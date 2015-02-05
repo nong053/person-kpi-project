@@ -24,6 +24,6 @@ $strSQLKpiResult="
 		
 	*/
 
-	
+
 ?>
-ss
+Test
