@@ -431,8 +431,8 @@ var easyPieChartMainFn = function(kpi_year,appraisal_period_id){
 			var easyChartAreaLayout="";
 			
 			$.each(data,function(index,indexEntry){
-				
-			easyChartAreaLayout+="<div class='KpiPerspective img-thumbnail' id='KpiPerspective-"+indexEntry[0]+"' style='background:"+colorArray[index]+"'>";
+				//KpiPerspective
+			easyChartAreaLayout+="<div class='KpiPerspective  col-xs-6 col-sm-6 col-md-6' id='KpiPerspective-"+indexEntry[0]+"' style='height:78px; cursor:pointer; background:"+colorArray[index]+"'>";
 				easyChartAreaLayout+="<div class='boxStatus'>";
 				easyChartAreaLayout+="<div class='boxGraphTop ' >";
 				easyChartAreaLayout+="<div id='donutStatus1 '>";
@@ -450,7 +450,12 @@ var easyPieChartMainFn = function(kpi_year,appraisal_period_id){
 				easyChartAreaLayout+="<br style='clear:both'>";
 			easyChartAreaLayout+="</div>";
 			
+				
 			//alert(indexEntry[0]);
+				//easyChartAreaLayout+="<div class='col-xs-6 col-md-6' style='background:"+colorArray[index]+"'>";
+					
+				//easyChartAreaLayout+="</div>";
+				
 			});
 			
 			$("#pieByDepartment").html(easyChartAreaLayout);
@@ -470,7 +475,7 @@ var easyPieChartMainFn = function(kpi_year,appraisal_period_id){
 				$(".pageEmb").remove();
 				$(".department_emp").remove();
 				$("body").append("<input type=\"hidden\" name=\"pageDepartment\" id=\"pageDepartment\" class=\"pageEmb\" value=\"pageDepartment\">");
-				$("body").append("<input type=\"hidden\" name=\"department_id_emp\" id=\"department_id_emp\" class=\"department_emp\" value="+department_id+">");
+				$("body").append("<input type=\"hidden\" name=\"paramDepartmentEmb\" id=\"paramDepartmentEmb\" class=\"department_emp\" value="+department_id+">");
 				$("body").append("<input type=\"hidden\" name=\"department_name_emp\" id=\"department_name_emp\" class=\"department_emp\" value="+department_name+">");
 				//### Embed Page Embed Department End ###
 				
@@ -704,25 +709,26 @@ var TableKpiResult = function(kpi_year,appraisal_period_id,department_id){
 			htmlGridKpiResult+="<table id=\"tableKpiResult\">";
 			htmlGridKpiResult+="<colgroup>";
 			
-					htmlGridKpiResult+="<col style=\"width:50px\" />";
-					htmlGridKpiResult+="<col style=\"width:300px\"/>";
-					htmlGridKpiResult+="<col style=\"width:80px\"/>";
-					htmlGridKpiResult+="<col style=\"width:80px\"/>";
-					htmlGridKpiResult+="<col style=\"width:80px\"/>";
-					htmlGridKpiResult+="<col />";
+					htmlGridKpiResult+="<col style=\"width:5%\" />";
+					htmlGridKpiResult+="<col style=\"width:40%\"/>";
+					htmlGridKpiResult+="<col style=\"width:7%\"/>";
+					htmlGridKpiResult+="<col style=\"width:7%\"/>";
+					htmlGridKpiResult+="<col style=\"width:7%\"/>";
+					htmlGridKpiResult+="<col style=\"width:10%\"/>";
+					htmlGridKpiResult+="<col style=\"width:15%\"/>";
 					/*htmlGridKpiResult+="<col />";*/
 					
 					
 			htmlGridKpiResult+="</colgroup>";
 				htmlGridKpiResult+="<thead>";
 					htmlGridKpiResult+="<tr>";
-						htmlGridKpiResult+="<th data-field=\"Field1\"><b>CODE</b></th>";
-						htmlGridKpiResult+="<th data-field=\"Field2\"><b>KPI NAME</b></th>";
-						htmlGridKpiResult+="<th data-field=\"Field3\"><b>TARGET</b></th>";
-						htmlGridKpiResult+="<th data-field=\"Field4\"><b>ACTUAL</b></th>";
+						htmlGridKpiResult+="<th data-field=\"Field1\"><b>Code</b></th>";
+						htmlGridKpiResult+="<th data-field=\"Field2\"><b>KPI Name</b></th>";
+						htmlGridKpiResult+="<th data-field=\"Field3\"><b>Target</b></th>";
+						htmlGridKpiResult+="<th data-field=\"Field4\"><b>Actual</b></th>";
 						htmlGridKpiResult+="<th data-field=\"Field5\"><b>Graph</b></th>";
 						htmlGridKpiResult+="<th data-field=\"Field6\"><b>Target</b></th>";
-						htmlGridKpiResult+="<th data-field=\"Field7\"><b>PERFORMANCE</b></th>";
+						htmlGridKpiResult+="<th data-field=\"Field7\"><b>Performance</b></th>";
 					htmlGridKpiResult+="</tr>";
 				htmlGridKpiResult+="</thead>";
 			htmlGridKpiResult+="<tbody>";
@@ -927,6 +933,8 @@ $("#appraisalPeriodSubmit").on("click",function(){
 				
 				//alert($(".RoleEmb").val());
 				$(".paramEmb").remove();
+				$(".department_emp").remove();
+				
 				$("body").append("<input type='hidden' class='paramEmb' name='paramYearEmb' id='paramYearEmb' value='"+$("#appraisal_year").val()+"'>");
 				$("body").append("<input type='hidden' class='paramEmb' name='paramAppraisalEmb' id='paramAppraisalEmb' value='"+$("#appraisal_period_id").val()+"'>");
 				$("body").append("<input type='hidden' class='paramEmb' name='paramDepartmentEmb' id='paramDepartmentEmb' value='"+$("#department_id").val()+"'>");
@@ -934,6 +942,7 @@ $("#appraisalPeriodSubmit").on("click",function(){
 				
 				if($(".pageEmb").val()=="pageDepartment"){
 					if($(".RoleEmb").val()=="roleEmp"){
+						
 						//### Call kpiDasboardMainFn for emp role Start ###
 						$.ajax({
 							url:"../View/vKpiDashboard.php",
@@ -955,6 +964,7 @@ $("#appraisalPeriodSubmit").on("click",function(){
 						//### Call kpiDasboardMainFn for emp role End ###
 						
 					}else{
+					
 					//### Call Program department Page Start ###
 						kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#department_id_emp").val(),$("#department_name_emp").val());
 					//### Call Program department Page Start ###
@@ -962,7 +972,7 @@ $("#appraisalPeriodSubmit").on("click",function(){
 					
 					
 				}else{//else2
-					
+					//alert('hello 2');
 					//kpiOwnerFn();
 					// call function index page
 					if($("#paramDepartmentEmb").val()=="All"){

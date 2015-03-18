@@ -1,11 +1,15 @@
+
+
 /* start call kpiDashboard */
+
+
 /*function action click department start*/
 	var actionGaugeDep=function(){
 		
 		//Click Department to Show Detail into Start.
 		$(".gaugeDep").off("click");
 		$(".gaugeDep").on("click",function(){
-
+			//alert($("#paramDepartmentEmb").val());
 			//### Call kpiDasboardMainFn for emp role Start ###
 			$.ajax({
 				url:"../View/vKpiDashboard.php",
@@ -21,7 +25,7 @@
 					kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val(),$("#paramDepartmentNameEmb").val());
 					//kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#departmentIdEmp").val(),$("#departmentNameEmp").val(),$("#emp_id").val());
 					//### drawdown grid for show detail within ###
-					
+					//$(".k-icon").click();
 				}
 			});
 			//### Call kpiDasboardMainFn for emp role End ###
@@ -51,7 +55,7 @@
 	}
 	
 var setGridTable=function(){
-
+	//alert("hello");
 	$(".k-grid td").css({
 		"padding-top":"2px",
 		"padding-bottom":"2px"
@@ -61,7 +65,7 @@ var setGridTable=function(){
 
 //dropdown List Department start
 var fnDropdownListDep=function(department_id,paramSelectAll){
-
+	//alert(department_id);
 	$.ajax({
 		url:"../Model/mDepartmentList.php",
 		type:"post",
@@ -96,7 +100,7 @@ fnDropdownListDep();
 //dropdown List Department start
 
 
-//Dropdown List AppralisalPeriod start
+//dropdown List AppralisalPeriod start
 var fnDropdownListAppralisal=function(year,appraisal_period_id,paramSelectAll){
 	alert(paramSelectAll);
 	$.ajax({
@@ -124,11 +128,22 @@ var fnDropdownListAppralisal=function(year,appraisal_period_id,paramSelectAll){
 		}
 	});
 }	
+//fnDropdownListAppralisal("2012");
+//dropdown year change action start
+/*
+$("#year").change(function(){
+	fnDropdownListAppralisal($(this).val());
+});
+$("#year").change();
+*/
+//dropdown year change action end
+
+//dropdown List AppralisalPeriod start
 
 //dropdown List Position start
 
 var fnDropdownListPosition=function(position_id,paramSelectAll){
-	
+	//alert("position");
 	$.ajax({
 		url:"../Model/mPositionList.php",
 		type:"post",
@@ -155,7 +170,7 @@ var fnDropdownListPosition=function(position_id,paramSelectAll){
 			
 			$("#positionArea").html(htmlDropDrowList);
 			$("#position1").change(function(){
-				
+				//alert($(this).val());
 				fnDropdownListEmployee($(this).val());
 			});
 			//persDropDrowList
@@ -165,6 +180,39 @@ var fnDropdownListPosition=function(position_id,paramSelectAll){
 }	
 //fnDropdownListPosition();
 //dropdown List Position start
+
+
+//dropdown List Department start
+/*
+var fnDropdownListDep=function(department_id){
+	//alert(perspective_id);
+	$.ajax({
+		url:"../Model/mDepartmentList.php",
+		type:"post",
+		dataType:"json",
+		async:false,
+		success:function(data){
+			console.log(data);
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select id=\"department_id\" name=\"department_id\">";
+				$.each(data,function(index,indexEntry){
+					if(department_id==indexEntry[0]){
+						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+					}else{
+						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					}
+					
+				});
+			htmlDropDrowList+="</select>";
+			
+			$("#depDropDrowListArea").html(htmlDropDrowList);
+			//persDropDrowList
+		}
+	});
+}	
+*/
+//fnDropdownListDep();
+//dropdown List Department start
 
 //dropdown List Division start
 var fnDropdownListDiv=function(division_id){
@@ -199,14 +247,14 @@ var fnDropdownListDiv=function(division_id){
 
 //dropdown List Role start
 var fnDropdownListRole=function(role_id){
-	
+	//alert(perspective_id);
 	$.ajax({
 		url:"../Model/mRoleList.php",
 		type:"post",
 		dataType:"json",
 		async:false,
 		success:function(data){
-		
+			//alert(data);
 			var htmlDropDrowList="";
 			htmlDropDrowList+="<select id=\"role_id\" name=\"role_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
 			
@@ -240,7 +288,7 @@ var fnDropdownListKPI=function(kpi_id){
 		dataType:"json",
 		async:false,
 		success:function(data){
-			
+			//alert(data);
 			var htmlDropDrowList="";
 			htmlDropDrowList+="<select id=\"kpi_id\" name=\"kpi_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
 				$.each(data,function(index,indexEntry){
@@ -266,7 +314,7 @@ var fnDropdownListKPI=function(kpi_id){
 
 //dropdown List Employee start
 var fnDropdownListEmployee=function(position_id,emp_id){
-
+	//alert("position");
 	$.ajax({
 		url:"../Model/mEmployeeList.php",
 		type:"post",
@@ -311,6 +359,39 @@ var callProgramControl=function(programControl){
 
 $(document).ready(function(){
 	
+	
+
+	//dropdown List AppralisalPeriod start
+	/*
+	var fnDropdownListAppralisal=function(year,appraisal_period_id){
+		//alert(year);
+		$.ajax({
+			url:"../Model/mAppralisalPeriodList.php",
+			type:"post",
+			dataType:"json",
+			async:false,
+			data:{"year":year},
+			success:function(data){
+				//alert(data);
+				var htmlDropDrowList="";
+				htmlDropDrowList+="<select id=\"appraisal_period_id\" name=\"appraisal_period_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+					$.each(data,function(index,indexEntry){
+						if(appraisal_period_id==indexEntry[0]){
+							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+						}else{
+							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+						}
+						
+					});
+				htmlDropDrowList+="</select>";
+				//alert(htmlDropDrowList);
+				$("#appraisalPeriodAea").html(htmlDropDrowList);
+				//persDropDrowList
+			}
+		});
+	}	
+*/
+	//#################  Create Parameter End #####################
 
 	//#################  Create Parameter Year Start   ############
 	var paramYear=function(kpi_year){
@@ -342,7 +423,9 @@ $(document).ready(function(){
 								}
 							}
 								
-
+										
+								
+								
 							
 						});
 					htmlDropDrowList+="</select>";
@@ -365,11 +448,9 @@ $(document).ready(function(){
 	//################START CLICK kpiDashboard DISPLAY OWNER DAASHBOARD ##################
 	var ownnerDisplayFn=function(){
 		//alert($("#depDisable").val());
-		//alert("ownnerDisplayFn");
 		
 		if($("#depDisable").val()=="disable"){
 			kpiOwnerFn();
-			
 			
 			if($("#paramYearEmb").val()!=undefined){
 				paramYear($("#paramYearEmb").val());
@@ -402,11 +483,11 @@ $(document).ready(function(){
 				$("#titleDepTop").html("ผลการประเมิน"+$("#paramDepartmentNameEmb").val());
 				piChartkpiResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val());
 			
-				gaugeOwner($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),"All");
-				barChart($("#paramYearEmb").val(),$("#paramDepartmentEmb").val());
-				TableKpiResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val());
-				
-				actionGaugeDep();
+			gaugeOwner($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),"All");
+			barChart($("#paramYearEmb").val(),$("#paramDepartmentEmb").val());
+			TableKpiResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val());
+			
+			actionGaugeDep();
 			
 			
 			/*add subject on page*/
@@ -415,20 +496,14 @@ $(document).ready(function(){
 			
 		}else{
 			
-			
+		
 		kpiOwnerFn();
 		
-		
-		
 		if($("#paramYearEmb").val()!=undefined){
-
 		paramYear($("#paramYearEmb").val());
 		fnDropdownListDep($("#paramDepartmentEmb").val(),"selectAll");
 		fnDropdownListAppralisal($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),"selectAll");
-		
-		
 		}else{
-			
 			paramYear();
 			fnDropdownListDep("","selectAll");
 			fnDropdownListAppralisal($("#appraisal_year").val(),"","selectAll");	
@@ -485,7 +560,6 @@ $(document).ready(function(){
 		//call fn
 		ownnerDisplayFn();
 		
-		
 	});
 	
 	
@@ -501,12 +575,12 @@ $(document).ready(function(){
 			if(data[0][0]=="emp"){
 				$(".pageEmb").remove();
 				$(".RoleEmb").remove();
-				/*
+				
 				setTimeout(function(){
 					//### withdrow panel left ###
-					//$("#withdrawEnlarge").click();
+					$("#withdrawEnlarge").click();
 				});
-				*/
+				
 				
 				
 				$("body").append("<input type=\"hidden\" name=\"pageDepartment\" id=\"pageDepartment\" class=\"pageEmb\" value=\"pageDepartment\">");
@@ -528,7 +602,7 @@ $(document).ready(function(){
 					async:false,
 					data:{"kpi_year":data[0][3],"appraisal_period_id":"All","department_id":data[0][1],"department_name":data[0][2]},
 					success:function(data2){
-						
+						//alert("hello2");
 						$("#mainContent").html(data2);
 						callProgramControl("cKpiDashboard.js");
 						
@@ -541,11 +615,11 @@ $(document).ready(function(){
 				});
 				}else if($("#roleLevelEmp").val()=="Level2"){
 					
-					//ownnerDisplayFn();
+					ownnerDisplayFn();
 					
 				}else if($("#roleLevelEmp").val()=="Level1"){
 					
-					//ownnerDisplayFn();
+					ownnerDisplayFn();
 				}
 				
 			
@@ -555,7 +629,20 @@ $(document).ready(function(){
 				$("body").append("<input type=\"hidden\" name=\"roleAdmin\" id=\"roleAdmin\" class=\"RoleEmb\" value=\"roleAdmin\">");
 				
 			}
-				
+				/*
+				$.ajax({
+					url:"../View/vKpiDashboard.php",
+					type:"get",
+					dataType:"html",
+					async:false,
+					data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"department_id":department_id,"department_name":department_name},
+					success:function(data){
+						$("#mainContent").html(data);
+						callProgramControl("cKpiDashboard.js");
+						kpiDasboardMainFn(kpi_year,appraisal_period_id,department_id,department_name);
+					}
+				});
+				*/
 				
 			}
 	});
@@ -575,7 +662,7 @@ $(document).ready(function(){
 		$("body").append("<input type='hidden' name='pageApproveKpiResult' id='pageApproveKpiResult' class='pageEmb' value='pageApproveKpiResult'>");
 		
 		//### Embed Page End ###
-		
+		/*
 		$.ajax({
 			url:"../View/vApproveKpiResult.php",
 			type:"get",
@@ -584,11 +671,14 @@ $(document).ready(function(){
 				$("#mainContent").html(data);
 				callProgramControl("cApproveKpi.js");
 				
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-edit\"></i> "+$("#approveKpiResult >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
+		
 	});
 	/* end call approveKpiResult  */
 	
@@ -600,6 +690,7 @@ $(document).ready(function(){
 		$(".pageEmb").remove();
 		$("body").append("<input type='hidden' name='pageKpiResult' id='pageKpiResult' class='pageEmb' value='pageKpiResult'>");
 		//### Embed Page End ###
+		/*
 		$.ajax({
 			url:"../View/vResultKpi.php",
 			type:"get",
@@ -607,11 +698,13 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cResultKpi.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#kpiResult >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call kpi result  */
@@ -620,11 +713,12 @@ $(document).ready(function(){
 	/* start call position  */
 	$("#position").click(function(){
 		$(".topParameter").hide();
+		
 		//### Embed Page Start ###
 		$(".pageEmb").remove();
 		$("body").append("<input type='hidden' name='pagePosition' id='pagePosition' class='pageEmb' value='pagePosition'>");
 		//### Embed Page End ###
-		
+		/*
 		$.ajax({
 			url:"../View/vPosition.php",
 			type:"get",
@@ -632,11 +726,13 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cPosition.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-fire\"></i> "+$("#position >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call position  */
@@ -645,6 +741,7 @@ $(document).ready(function(){
 	$("#employee").click(function(){
 		
 		$(".topParameter").hide();
+		/*
 		$.ajax({
 			url:"../View/vEmployee.php",
 			type:"get",
@@ -654,11 +751,13 @@ $(document).ready(function(){
 				//$(".emb_param").remove();
 				callProgramControl("cEmployee.js");
 				//$(".emb_param").remove();
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-user\"></i> "+$("#employee >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call employee  */
@@ -667,6 +766,7 @@ $(document).ready(function(){
 	/* start call assignKPI  */
 	$("#assignKPI").click(function(){
 		$(".topParameter").hide();
+		/*
 		$.ajax({
 			url:"../View/vAssignKPI.php",
 			type:"get",
@@ -677,18 +777,21 @@ $(document).ready(function(){
 				//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#division_id").val(),$("#position_id").val(),$("#employee_id").val());
 				//showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#division_id_emb").val(),$("#position_id_emb").val());
 				
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-signal\"></i> "+$("#assignKPI >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call kpiBaseLine  */
 	/* start call appraisalPeriod  */
 	$("#appraisalPeriod").click(function(){
 		$(".topParameter").hide();
+		/*
 		$.ajax({
 			url:"../View/vAppraisalPeriod.php",
 			type:"get",
@@ -696,11 +799,13 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cAppraisalPeriod.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-time\"></i> "+$("#appraisalPeriod >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call kpiBaseLine  */
@@ -709,6 +814,7 @@ $(document).ready(function(){
 	/* start call kpiBaseLine  */
 	$("#kpiBaseLine").click(function(){
 		$(".topParameter").hide();
+		/*
 		$.ajax({
 			url:"../View/vKpiBaseLine.php",
 			type:"get",
@@ -716,12 +822,14 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				//scallProgramControl("cThreshold.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#kpiBaseLine >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 				
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call kpiBaseLine  */
@@ -729,7 +837,8 @@ $(document).ready(function(){
 	/* start call threshold  */
 	$("#threshold").click(function(){
 		$(".topParameter").hide();
-		
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
+		/*
 		$.ajax({
 			url:"../View/vThreshold.php",
 			type:"get",
@@ -738,12 +847,13 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cThreshold.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon  glyphicon-th-large\"></i> "+$("#threshold >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 				
 			}
 		});
+	*/
 	});
 
 	/* end call threshold  */
@@ -751,6 +861,7 @@ $(document).ready(function(){
 	/* start call Department  */
 	$("#department").click(function(){
 		$(".topParameter").hide();
+		/*
 		$.ajax({
 			url:"../View/vDepartment.php",
 			type:"get",
@@ -758,11 +869,13 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cDepartment.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-road\"></i> "+$("#department >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+		*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 
 	/* end call Department  */
@@ -777,7 +890,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cDivision.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#division >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
@@ -786,47 +899,16 @@ $(document).ready(function(){
 
 	/* end call Division  */
 	
-	
-	/* start call executive summary */
-	$("#executive").click(function(){
-		$(".topParameter").hide();
-		$.ajax({
-			url:"../View/executive.html",
-			type:"get",
-			dataType:"html",
-			success:function(data){
-				$("#mainContent").html(data);
-				/*add subject on page*/
-				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#executive >.menu-text").text()+"</b>";
-				$("#subjectPage").html(subjectPage);
-			}
-		});
-	});
+
 	
 	
-	/* end call executive summary */
-	
-	/* start call traffic */
-	$("#traffic").click(function(){
-		$(".topParameter").hide();
-		$.ajax({
-			url:"../View/traffic.html",
-			type:"get",
-			dataType:"html",
-			success:function(data){
-				$("#mainContent").html(data);
-				/*add subject on page*/
-				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#traffic >.menu-text").text()+"</b>";
-				$("#subjectPage").html(subjectPage);
-			}
-		});
-	});
 	
 	
 	
 
 	$("#kpi").click(function(){
 		$(".topParameter").hide();
+		/*
 		$.ajax({
 			url:"../View/vKpi.php",
 			type:"get",
@@ -834,51 +916,18 @@ $(document).ready(function(){
 			success:function(data){
 				$("#mainContent").html(data);
 				callProgramControl("cKPI.js");
-				/*add subject on page*/
+				//add subject on page
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-edit\"></i> "+$("#kpi >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 			}
 		});
+	*/
+		alert("โปรดติดต่อเจ้าหน้าที่: 080-992-6565 \nEmail: nn.it@hotmail.com");
 	});
 	
-	$("#hr").click(function(){
-		$(".topParameter").hide();
-		$.ajax({
-			url:"../View/hr.html",
-			type:"get",
-			dataType:"html",
-			success:function(data){
-				$("#mainContent").html(data);
-			}
-		});
-	});
-	
-	$("#education").click(function(){
-		$(".topParameter").hide();
-		$.ajax({
-			url:"../View/education.html",
-			type:"get",
-			dataType:"html",
-			success:function(data){
-				$("#mainContent").html(data);
-			}
-		});
-	});
-	
-	/*start manufactoring*/
-	$("#manufactoring").click(function(){
-		$.ajax({
-			url:"../View/manufacturing.html",
-			type:"get",
-			dataType:"html",
-			success:function(data){
-				$("#mainContent").html(data);
-			}
-		});
-	});
-	/*end manufactoring*/
 	
 	
+
 
    	  
    	  	

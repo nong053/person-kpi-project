@@ -519,7 +519,9 @@ function detailInit(e) {
 					async:false,
 					data:{"kpi_year":kpi_year,"emp_id":EntryIndex[5],"action":"score_spraph_emp"},
 					success:function(data){
+						
 						var score_spraph=data[0][0];
+						
 						//alert(""+score_spraph+"");
 						//return "0,80,80";
 							if(index==0){
@@ -731,15 +733,17 @@ function detailInit(e) {
 
 	//#################  submit button action start #####################
 
-	$("#appraisalPeriodSubmit").off("click");
-	$("#appraisalPeriodSubmit").on("click",function(){
-					
+	$("#kpiDashboardSubmit").off("click");
+	$("#kpiDashboardSubmit").on("click",function(){
+					//alert($(".pageEmb").val());
 					//alert($(".RoleEmb").val());
 					$(".paramEmb").remove();
 					$("body").append("<input type='hidden' class='paramEmb' name='paramYearEmb' id='paramYearEmb' value='"+$("#appraisal_year").val()+"'>");
 					$("body").append("<input type='hidden' class='paramEmb' name='paramAppraisalEmb' id='paramAppraisalEmb' value='"+$("#appraisal_period_id").val()+"'>");
 					
 					if($(".pageEmb").val()=="pageDepartment"){
+						
+						
 						if($(".RoleEmb").val()=="roleEmp"){
 							//### Call kpiDasboardMainFn for emp role Start ###
 							$.ajax({
@@ -753,15 +757,26 @@ function detailInit(e) {
 								success:function(data){
 									$("#mainContent").html(data);
 									callProgramControl("cKpiDashboard.js");
-									kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#departmentIdEmp").val(),$("#departmentNameEmp").val(),$("#emp_id").val());
-									//### drawdown grid for show detail within ###
-									$(".k-icon").click();
+									//check if Level 3 get page is show all becuace one emp_id
+									if($("#roleLevelEmp").val()=="Level3"){
+										kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#departmentIdEmp").val(),$("#departmentNameEmp").val(),$("#emp_id").val());
+										//### drawdown grid for show detail within ###
+										$(".k-icon").click();
+									}else{
+										kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#departmentIdEmp").val(),$("#departmentNameEmp").val());
+									}
 								}
 							});
 							//### Call kpiDasboardMainFn for emp role End ###
 							
 						}else{
 						//### Call Program department Page Start ###
+							
+							alert("paramYearEmb"+$("#paramYearEmb").val());
+							alert("paramAppraisalEmb"+$("#paramAppraisalEmb").val());
+							alert("department_id_emp"+$("#department_id_emp").val());
+							alert("department_name_emp"+$("#department_name_emp").val());
+							
 							kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#department_id_emp").val(),$("#department_name_emp").val());
 						//### Call Program department Page Start ###
 						}
@@ -783,7 +798,7 @@ function detailInit(e) {
 			}
 
 	});
-	//$("#appraisalPeriodSubmit").click();
+	//$("#kpiDashboardSubmit").click();
 
 	//#################  submit button action end   #####################
 	

@@ -62,11 +62,14 @@
 				  margin-left: 0.1em;
 				  font-size: .8em;
 				}
+				
 				.KpiPerspective{
+				/*
 				float:left;
 				margin-left:2px;
 				height: 79px;
 				min-width:160px;
+				*/
 				}
 				#barChartOwner{
 				height:250px;
@@ -77,7 +80,7 @@
 
  <div class="row1">
 		<div class="panel panel-default panel-top">
-		  <div class="panel-heading">
+		  <div class="panel-heading" >
 		   
 									<div class="box-title-l">
 									
@@ -105,8 +108,8 @@
 												<div class="box4">
 													<div id="appraisalPeriodAea"></div>
 												</div>
-												<div class="box5">
-													<button id="appraisalPeriodSubmit" class="btn btn-primary btn-sm" style="margin-top: 2px;">ตกลง</button>
+												<div class="box5" >
+													<button href="#appraisalPeriodSubmit" id="appraisalPeriodSubmit" class="btn btn-primary btn-sm" style="margin-top: 2px;">ตกลง</button>
 												</div>
 												
 											</row>
@@ -136,7 +139,7 @@
 									
 									
 									</div>
-									<div class="box-title-r">
+									<div class="box-title-r" >
 										<div class="boxNav">
 										<a href="#">
 										<span class="glyphicon glyphicon-remove glyphicon-remove-top"></span>
@@ -158,12 +161,12 @@
 		  </div>
 		  <div class="panel-body panel-body-top" >
 		    	
-		    	<row>
+		    	<row >
 		    		<div class="col-md-3 ">
 		    		<!-- ### Panel Start ### -->
 						<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 								  <div class="panel-heading">
-									<b><i class="glyphicon glyphicon-screenshot"></i> ประสิทธิภาพโดยรวม</b>			
+									<b><i  class="glyphicon glyphicon-screenshot"></i> ประสิทธิภาพโดยรวม</b>			
 								  </div>
 								  <div class="panel-body panel-body-top">
 								  
@@ -207,7 +210,7 @@
 								  </div>
 								  <div class="panel-body panel-body-top" style="padding: 5px;margin-bottom: 5px;">
 								  
-								 		<div id="areaPieByDepartment" style="width: 350px;"></div>
+								 		<div id="areaPieByDepartment" style="width: auto;"></div>
 								 		
 								  </div>
 						</div>

@@ -240,7 +240,10 @@ $(document).ready(function(){
 	/*assign kpi all by loop employee start*/	
 	$("#assign_kpi_all").click(function(){
 		
+		/*Embeded Parameter to use.*/
 		/*
+		$("#param_assign_kpi_all").remove();
+		$("body").append("<input type='hidden' name='param_assign_kpi_all' class='param_assign_kpi_all' id='param_assign_kpi_all' value='param_assign_kpi_all'>");
 			showDataAssignKpiAll($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val(),"0");
 			$("#assignKpiShowData").show();
 			$("#formKPI").show();
@@ -248,7 +251,7 @@ $(document).ready(function(){
 			var PositionName="Position1";
 			$("#empNameArea").html("<b>Assign KPIs To : Department:"+DepName+" | Position:"+PositionName+"</b>");
 			resetDataAssignKpi();
-		*/	
+		*/
 			
 
 	});
@@ -340,8 +343,8 @@ var showDataAssignKpiAll=function(year,appraisal_period_id,department_id,positio
 			url:"../Model/mAssignKpi.php",
 			type:"post",
 			dataType:"html",
-			data:{"action":"showData","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
-				"position_id":position_id,"employee_id":employee_id},
+			data:{"action":"showDataAssignAll","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
+				"position_id":position_id},
 			success:function(data){
 				$("#assignKpiShowData").html(data);
 				
@@ -736,6 +739,7 @@ var showDataAssignKpiAll=function(year,appraisal_period_id,department_id,positio
 	/*Search data for assign data end*/
 	
 	$("form#AssignKpiForm").submit(function(){
+
 		/*
 		alert("department_id="+$("#department_id").val());
 		alert("division_id="+$("#division_id").val());
@@ -796,7 +800,7 @@ var showDataAssignKpiAll=function(year,appraisal_period_id,department_id,positio
 			}
 			
 		});
-	
+		  
 		
 		
 		return false;

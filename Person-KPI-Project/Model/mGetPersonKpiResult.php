@@ -231,8 +231,8 @@ where  emp_id='$emp_id'";
 				  	</table>
 					</div>
 				</div>
-				<div class=\"col-md-3\" style='margin-top:5px;'>
-					<img src=$rs[emp_picture_thum] class=\"img-thumbnail img-responsive\">
+				<div class=\"col-md-3 visible-lg visible-md\" style='margin-top:5px;'>
+					<img src=$rs[emp_picture_thum] class=\"img-thumbnail img-responsive \">
 				</div>
 		
 		";

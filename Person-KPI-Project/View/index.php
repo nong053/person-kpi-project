@@ -3,7 +3,7 @@
 <?php 
 
 if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
-	header( "location: ../login.php" );
+	header( "location: ../login.php?admin_name=".$_SESSION['admin_name']."" );
 	echo "redirect";
 	exit(0);	
 }
@@ -152,170 +152,245 @@ if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
     <link href="../Css/executive.css" rel="stylesheet">
     <!--  css customize -->
     <script>
-    var withdrawEnlargeCom=function(thisParam){
-		    $("#slideLeft").css({"width":"200px"});
-		$(".sidebar-background").css({"width":"200px"});
-		$("#mainContent").css({"margin-left":"201px"});
+  var withdrawEnlargeCom=function(thisParam){
+	  
+	$("#slideLeft").css({"width":"200px"});
+	$(".sidebar-background").css({"width":"200px"});
+	$("#mainContent").css({"margin-left":"201px"});
+	$(thisParam).addClass("active");
+	$(".menu-text").show();
+	$(".boxTitle").css({"width":"200px"});
+	$(".boxLeftTopSmall").hide();
+	$(".boxLeftTopLarge").show();
+	$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
+	$("#slideLeft").show();
+  };
+
+  var withdrawEnlargeMobile=function(thisParam){
+		$("#slideLeft").css({"width":"50px"});
+		$(".sidebar-background").css({"width":"50px"});
+		$("#mainContent").css({"margin-left":"51px"});
 		$(thisParam).addClass("active");
-		$(".menu-text").show();
-		$(".boxTitle").css({"width":"200px"});
-		$(".boxLeftTopSmall").hide();
-		$(".boxLeftTopLarge").show();
+		$(".menu-text").hide();
+		$(".boxTitle").css({"width":"50px"});
+		$(".boxLeftTopSmall").show();
+		$(".boxLeftTopLarge").hide();
 		$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
 		$("#slideLeft").show();
-	  };
-	var moblieFn = function(){
-		 $(".topParameter .box1").css({
-			    "width":"100%",
-				"margin-top":"2px"
-		   });
-		   $(".topParameter .box2").css({
-			    "width":"100%",
-				"margin-top":"2px"
-		   });
-		   $(".topParameter .box3").css({
-			    "width":"100%",
-				"margin-top":"2px"
-		   });
-		   $(".topParameter .box4").css({
-			    "width":"100%",
-				"margin-top":"2px"
-		   });
-		  // $("#slideLeft").show();
-	}
-	var computerFn = function(){
-		
-		 	$(".topParameter .box1").css({
-			    "width":"110px",
-				"margin-top":"2px",
-				"float":"left"
-		   });
-		   $(".topParameter .box2").css({
-			    "width":"90px",
-				"margin-top":"2px",
-				"float":"left"
-		   });
-		   $(".topParameter .box3").css({
-			    "width":"90px",
-				"margin-top":"2px",
-				"float":"left"
-		   });
-		   $(".topParameter .box4").css({
-			    "width":"90px",
-				"margin-top":"2px",
-				"float":"left"
-		   });
-		  withdrawEnlargeCom(this);
-		 //  $("#slideLeft").show();
-	}
-	var widthWindow=$(window).width();
-	//alert(widthWindow);
-	$(window).resize(function(){
-		
-		var widthWindowPercentage= (parseFloat($(window).width())/parseFloat(widthWindow))*100;
-		
-		/*console.log(widthWindowPercentage+"%");*/
-		/*widthWindowPercentage=(widthWindowPercentage);*/
-		//console.log(widthWindowPercentage+"%");
-		//$(".KpiPerspective").css({"min-width":(widthWindowPercentage+60)+"px"});
-		if($(window).width() < 980){
+   };
+	  
+  
+var moblieFn = function(){
+	 $(".topParameter .box1").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+	   $(".topParameter .box2").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+	   $(".topParameter .box3").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+	   $(".topParameter .box4").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+
+	   $(".topParameter .box5").css({
+			 
+			"margin-top":"5px"
 			
-			$(".KpiPerspective").css({"min-width":"100px"});
-		}
-		 if($(window).width() > 980){
-			$(".KpiPerspective").css({"min-width":"160px"});
-		}
+	   });
+
+	   $(".topParameter .box7").css({
+		   	"width":"100%",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px"
+	   });
+
+	   $(".topParameter .box8").css({
+		   	"width":"100%",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px",
+	   });
+
+	   $("select#appraisal_year").css({
+		   	"width":"100%",
+	   });
+
+	   $("select#department_id").css({
+		   	"width":"100%",
+	   });
+
+	   $("select#appraisal_period_id").css({
+		   	"width":"100%",
+	   });
+
+	   $("#appraisalPeriodSubmit").css({
+
+		   	"margin-bottom": "5px",
+	   		"margin-top": "10px",
+	    	"width": "100%"
+	   }).removeClass("btn-sm");
+	   withdrawEnlargeMobile();
+	   $("#withdrawEnlarge").removeClass("active");
+	   $(".topParameter").show();
+
+		$("#appraisalPeriodSubmit").attr("href","#appraisalPeriodSubmit");
+	   $('#appraisalPeriodSubmit').click(function(){
+		    $('html, body').animate({
+		        scrollTop: $( $(this).attr('href') ).offset().top
+		    }, 500);
+		    return false;
+		});
+		
+	  // $("#slideLeft").show();
+		//$("#withdrawEnlarge").click();
+}
+var computerFn = function(){
+	
+	 	$(".topParameter .box1").css({
+		    "width":"110px",
+			"margin-top":"2px",
+			"float":"left"
+	   });
+	   $(".topParameter .box2").css({
+		    "width":"90px",
+			"margin-top":"2px",
+			"float":"left"
+	   });
+	   $(".topParameter .box3").css({
+		    "width":"90px",
+			"margin-top":"2px",
+			"float":"left"
+	   });
+	   $(".topParameter .box4").css({
+		    "width":"90px",
+			"margin-top":"2px",
+			"float":"left"
+	   });
+
+	   $(".topParameter .box5").css({
+		 
+			"margin-top":"0px"
+			
+	   });
+
+	   $(".topParameter .box7").css({
+		   	"width":"50px",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px"
+	   });
+
+	   $(".topParameter .box8").css({
+		   	"width":"130px",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px"
+	   });
+
+	   $("select#appraisal_period_id").css({
+		   	"width":"80px",
+	   });
+
+	   $("#appraisalPeriodSubmit").css({
+		   	"width":"auto",
+		 	"margin-bottom": "0px",
+	   		"margin-top": "2px",
+	   		
+	   }).addClass("btn-sm");
+
+	  withdrawEnlargeCom(this);
+	  $(".topParameter").show();
+	  $("#withdrawEnlarge").addClass("active");
+	  $("#appraisalPeriodSubmit").attr("href","");
+	 //  $("#slideLeft").show();
+}
+var widthWindow=$(window).width();
+//alert(widthWindow);
+$(window).resize(function(){
+	
+	var widthWindowPercentage= (parseFloat($(window).width())/parseFloat(widthWindow))*100;
+	
+	/*console.log(widthWindowPercentage+"%");*/
+	/*widthWindowPercentage=(widthWindowPercentage);*/
+	//console.log(widthWindowPercentage+"%");
+	//$(".KpiPerspective").css({"min-width":(widthWindowPercentage+60)+"px"});
+	if($(window).width() < 980){
+		
+		//$(".KpiPerspective").css({"min-width":"100px"});
+	}
+	 if($(window).width() > 980){
+		//$(".KpiPerspective").css({"min-width":"160px"});
+	}
+});
+
+//CHECK BROWSER FN
+var checkBrowserFn=function(){
+		
+		if($(window).width()<980){
+			   //alert($(window).width());
+			   //console.log($(window).width()); 
+			   /*
+			   $("#slideLeft").hide();
+			   $(".boxTitle").hide();
+			   $(".sidebar-background").hide();
+			   $("#mainContent").css({"margin-left":"0px"});
+			   */
+
+			   $("#slideLeft").show();
+			   $("#mainContent").css({"margin-left":"50px"});
+			   $(".boxTitle").show();
+			   $(".sidebar-background").show();
+			   
+			   moblieFn();
+
+		   }else{
+			   $("#slideLeft").show();
+			   $("#mainContent").css({"margin-left":"201px"});
+			   $(".boxTitle").show();
+			   $(".sidebar-background").show();
+			   computerFn();
+		   }
+	};
+
+	
+    $(document).ready(function(){
+
+    $(".topParameter").hide();
+	checkBrowserFn();
+	setTimeout(function(){
+		$("#kpiDashboard").click();
+		$("#appraisalPeriodSubmit").click();
 	});
 	
    	$(window).resize(function(){
-	   if($(window).width()<980){
-		   //console.log($(window).width()); 
-		   $("#slideLeft").hide();
-		   $(".boxTitle").hide();
-		   $(".sidebar-background").hide();
-		   $("#mainContent").css({"margin-left":"0px"});
-		   moblieFn();
+   		checkBrowserFn();
+   		$("#appraisalPeriodSubmit").click();
+	   
+   	});
 
-	   }else{
-		   $("#slideLeft").show();
-		   $("#mainContent").css({"margin-left":"201px"});
-		   $(".boxTitle").show();
-		   $(".sidebar-background").show();
-		   computerFn();
-	   }
+   	$("#kpiDashboard").click(function(){
+   		checkBrowserFn();
    	});
    	
-
+});//document ready
    </script>
-   <style>
-   /*
-  	ul.subMenu{
-  	padding:0px;
-  	margin:0px;
-  	margin-top:10px;
-  	
-  	}
-	ul.subMenu  li{
-	//border-top:1px solid #cccccc;
-	display:block;
-	padding-top:5px;
-	padding-bottom:5px;
-	}
-	ul.subMenu  li{
-	border-left:1px solid #cccccc;
-	}
-	ul.subMenu  li .dash a {
-	
-	}
-	ul.subMenu  li .dash a:hover{
-	background:#cccccc;
-	display:block;
-	}
-	ul.subMenu  li .dash{
-	hieght:1px;
-	border-top:1px #cccccc solid;
-	width:20px;
-	//background:red;
-	padding:0px;
-	margin:0px;
-	position:relative;
-	top:10px;
-	}
-	.navList{
-	float:right;
-	border:1px solid #cccccc;
-	font-size:10px;
-	width:10px;
-	height:10px;
-	padding:0px;
-	margin:0px;
-	position:relative;
-	top:7px;
-	}
-	.boxLeft{
-	margin-left:10px;
-	padding-top: 5px;
-	}
-	*/
-   </style>
+  
   </head>
 
   <body>
-<script type="text/javascript">
-   $(document).ready(function(){
-	   
-		
-   });
-   
-</script>
 
-												
- 	
     <div class="navbar navbar-blue navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header" >
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -327,215 +402,7 @@ if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
        	
           
           <ul class="nav navbar-nav navbar-right">
-          <!-- 
-            <li class="active boxNav">
-	            <button class="boxB btn btn-success" data-toggle="dropdown">
-					<i class="glyphicon glyphicon-hdd"></i>
-				</button>
-				
-				
-				<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-					<li class="dropdown-header">
-					<i class="icon-ok"></i>
-					4 Tasks to complete
-					</li>
-					<li>
-					<a href="#">
-					<div class="clearfix">
-					<span class="pull-left">Software Update</span>
-					<span class="pull-right">65%</span>
-					</div>
-					<div class="progress progress-mini ">
-					<div class="progress-bar " style="width:65%"></div>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<div class="clearfix">
-					<span class="pull-left">Hardware Upgrade</span>
-					<span class="pull-right">35%</span>
-					</div>
-					<div class="progress progress-mini ">
-					<div class="progress-bar progress-bar-danger" style="width:35%"></div>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<div class="clearfix">
-					<span class="pull-left">Unit Testing</span>
-					<span class="pull-right">15%</span>
-					</div>
-					<div class="progress progress-mini ">
-					<div class="progress-bar progress-bar-warning" style="width:15%"></div>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<div class="clearfix">
-					<span class="pull-left">Bug Fixes</span>
-					<span class="pull-right">90%</span>
-					</div>
-					<div class="progress progress-mini progress-striped active">
-					<div class="progress-bar progress-bar-success" style="width:90%"></div>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					See tasks with details
-					<i class="icon-arrow-right"></i>
-					</a>
-					</li>
-				</ul>
-				 
-			</li>
-            <li class="boxNav">
-            	
-            	<button class="boxB btn btn-info" data-toggle="dropdown">
-					<i class="glyphicon glyphicon-indent-left"></i>
-				</button>
-				
-            	<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-					<li class="dropdown-header">
-						<i class="icon-warning-sign"></i>
-						8 Notifications
-					</li>
-
-					<li>
-						<a href="#">
-							<div class="clearfix">
-								<span class="pull-left">
-									<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-									New Comments
-								</span>
-								<span class="pull-right badge badge-info">+12</span>
-							</div>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<i class="btn btn-xs btn-primary icon-user"></i>
-							Bob just signed up as an editor ...
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<div class="clearfix">
-								<span class="pull-left">
-									<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-									New Orders
-								</span>
-								<span class="pull-right badge badge-success">+8</span>
-							</div>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<div class="clearfix">
-								<span class="pull-left">
-									<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-									Followers
-								</span>
-								<span class="pull-right badge badge-info">+11</span>
-							</div>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							See all notifications
-							<i class="icon-arrow-right"></i>
-						</a>
-					</li>
-				</ul>
-				
-            </li>
-            <li class="boxNav">
-            	
-            	<button class="boxB btn btn-warning">
-					<i class="glyphicon glyphicon-lock"></i>
-				</button>
-            	
-            </li>
-             <li class="boxNav">
-            	
-            	<button class="boxB btn btn-danger" data-toggle="dropdown">
-					<i class="glyphicon glyphicon-list-alt"></i>
-				</button>
-				
-				<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-					<li class="dropdown-header">
-						<i class="icon-envelope-alt"></i>
-						5 Messages
-					</li>
-
-					<li>
-						<a href="#">
-							<img alt="Alex's Avatar" class="msg-photo" src="assets/avatars/avatar.png">
-							<span class="msg-body">
-								<span class="msg-title">
-									<span class="blue">Alex:</span>
-									Ciao sociis natoque penatibus et auctor ...
-								</span>
-
-								<span class="msg-time">
-									<i class="icon-time"></i>
-									<span>a moment ago</span>
-								</span>
-							</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<img alt="Susan's Avatar" class="msg-photo" src="assets/avatars/avatar3.png">
-							<span class="msg-body">
-								<span class="msg-title">
-									<span class="blue">Susan:</span>
-									Vestibulum id ligula porta felis euismod ...
-								</span>
-
-								<span class="msg-time">
-									<i class="icon-time"></i>
-									<span>20 minutes ago</span>
-								</span>
-							</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<img alt="Bob's Avatar" class="msg-photo" src="assets/avatars/avatar4.png">
-							<span class="msg-body">
-								<span class="msg-title">
-									<span class="blue">Bob:</span>
-									Nullam quis risus eget urna mollis ornare ...
-								</span>
-
-								<span class="msg-time">
-									<i class="icon-time"></i>
-									<span>3:15 pm</span>
-								</span>
-							</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="inbox.html">
-							See all messages
-							<i class="icon-arrow-right"></i>
-						</a>
-					</li>
-				</ul>
-            	 
-            </li>
-           -->
+          
            
            
             <li class="dropdown">
@@ -578,21 +445,7 @@ if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
 			<span class="caret"></span>
 			</a>
 				<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-					<!-- 
-					<li>
-						<a href="#">
-							<i class="icon-cog"></i>
-							Settings
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<i class="icon-user"></i>
-							Profile
-						</a>
-					</li>
-					 -->
+					
 					<li class="divider"></li>
 
 					<li>
@@ -639,12 +492,7 @@ if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
 				  			<a href="#" id="department" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text">Department</span></a>
 				 			<b class="arrow"></b>
 				 		</li>
-				 		<!-- 
-				 		<li > 
-				  			<a href="#" id="division" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text">Division</span></a>
-				 			<b class="arrow"></b>
-				 		</li>
-				 		 -->
+				 		
 				 		<li >
 				  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> Position</span></a>
 				  			<b class="arrow"></b>
@@ -710,140 +558,39 @@ if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
 					<span class="boxSmall colorOrange"></span>
 					<span class="boxSmall colorRed"></span>
 				</div>
-				<!-- 
-				<button class="boxC btn btn-success">
-					<i class="glyphicon glyphicon-align-center"></i>
-				</button>
-				<button class="boxC btn btn-info">
-					<i class="glyphicon glyphicon-asterisk"></i>
-				</button>
-				<button class="boxC btn btn-warning">
-					<i class="glyphicon glyphicon-briefcase"></i>
-				</button>
-				<button class="boxC btn btn-danger">
-					<i class="glyphicon glyphicon-cloud-download"></i>
-				</button>
-				 -->
+			
 				 
 			</div>
 		</div>
 		
 		<div class="boxTitleN">
 		<div id="subjectPage" ></div>
-		 <!-- 
-		&nbsp; &nbsp;<span class="glyphicon glyphicon-home"></span>
-		Home <span class="glyphicon glyphicon-chevron-right" style="font-size:10px;"></span> Dashboard
-		 -->
+		 
 		</div>
-		
-		<!-- button Withdraw/Enlarge option Start-->
-		<!-- 
-		<div class="gearOption" style="display:inline; float:right ; position:relative; magin-right:5px">
-			 
-			 <div class="optionArea">
-		 		<div class="gear" id="gearOption"><div  class=" glyphicon glyphicon-cog buttonGearOption fontWhite"></div></div>
-		 		<div class="option">
-		 			
-		 				<div class="tableOption fontWhite">
-				 			<table  cellspacing="0"  cellpadding="0" border="0">
-				 				<tr>
-				 					<td colspan="6"><b>Layout Options</b></td>
-				 				</tr>
-				 				<tr>
-				 					<td><input type="checkbox" class="themeAction"></td>
-				 					<td>Fixed Header</td>
-				 					
-				 					<td><input type="checkbox" class="themeAction"></td>
-				 					<td>Fixed Footer</td>
-				 					
-				 					<td><input type="checkbox" class="themeAction"></td>
-				 					<td>Fixed sidebar</td>
-				 					
-				 				</tr>
-				 				
-				 				
-				 			</table>
-			 			</div>
-			 			
-			 			<div class="tableOption fontWhite">
-			 				<table  cellspacing="0"  cellpadding="0" border="0">
-				 				<tr>
-				 					<td colspan="6"><b>Theme Color</b></td>
-				 				</tr>
-				 				<tr>
-				 					<td><button class="boxB btn btn-success themeAction"></button></td>
-				 					<td><button class="boxB btn btn-info themeAction"></button></td>
-				 					<td><button class="boxB btn btn-warning themeAction"></button></td>
-				 					<td><button class="boxB btn btn-danger themeAction"></button></td>
-				 					
-				 					
-				 				</tr>
-				 			</table>
-			 			</div>
-		 			
-		 		</div>
-	 		</div>
-		
-		</div>
-		 -->
-		<!-- button Withdraw/Enlarge option  End-->
-		
-		
 		
 		<!--  form search,button fullscreen start -->
 		<div class="boxTopRight" style="float:right; margin-right:5px;">
-				<div class="withdraw-Enlarge" style="display:inline; float:right ; position:relative; magin-right:200px">
-					<button id="withdrawEnlarge" class="glyphicon glyphicon-align-justify active" style="width:30px;height:30px; color:#6d6a69;font-weight:normal;"></button>
+				<div class="withdraw-Enlarge" style="display:inline; float:right ; position:relative; magin-right:200px;margin-left: 2px;">
+					<button id="withdrawEnlarge" class="glyphicon glyphicon-align-justify active" style="width:auto;height:30px; color:#6d6a69;font-weight:normal;"></button>
 				</div>
 				
 				<div class="boxTitleR" style=" float:right; margin-right:2px">
 					<div class="formSearch" >
-				<!-- 
-					<form class="form-search">
-						
-						
-						  <input type="text" style="width:200px;height:28px;margin-top: 2px;" placeholder="Search">
-						  <span class="glyphicon glyphicon-search searchButton">
-							
-						  </span>
-						
-					</form>
-					 
-				 -->
+				
 					 </div>
 			</div>
 			<!--  form search,button fullscreen end -->
 			
 			<!-- button full screen start -->
 			<div class="fullScreen" style="display:inline; float:right ; position:relative; magin-right:5px">
-				<button class=" glyphicon glyphicon-fullscreen" id="btnFullScreen" style="width:30px;height:30px;"></button>
+				<button class=" glyphicon glyphicon-fullscreen" id="btnFullScreen" style="width:auto;height:30px;"></button>
 			</div>
 			<!-- button full screen end -->
 			
 		</div>
 		<!--  form search,button fullscreen end -->
 		
-		<!-- 
-		<div class="topParameter">
-			
-			<table>
-				<tr>
-					<td>&nbsp; &nbsp; <strong>ปีการประเมิน</strong></td>
-					<td id="appraisalYearArea">
-						
-					</td>
-					<td><strong>ประเมินครั้งที่</strong></td>
-					<td id="appraisalPeriodAea">
-						
-					</td>
-					<td>
-						<button id="appraisalPeriodSubmit">ตกลง</button>
-					</td>
-				</tr>
-				
-			</table>
-		</div>
-		 -->
+		
 	</div>
 	<div class="container">
 		
@@ -853,27 +600,7 @@ if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
 	</div>
 
 
- <div id="testChart"></div>
-  <!-- 
-<div style="height:250px;width:500px;float:left;"  id="chart"></div>
-
-<button id="btnBarChart">btnBarChart</button>
-<button id="btnBarChartMutiSeries">btnBarChartMutiSeries</button>
-<button id="btnChartHorizontal">Horizontal</button>
-<button id="btnChartHorizontalMutiSeries">barchartHorizontalMutiSeries</button>
-<button id="btnChartHorizontalMutiSeriesStace">btnChartHorizontalMutiSeriesStace</button>
-
-<button id="btnChartLine">btnChartLine</button>
-<button id="btnDonut">Donut chart</button>
-<button id="btnPie">Pie chart</button>
-<button id="btnBarLineChart">BarLine chart</button>
-<button id="btngaugeChart">gaugeChart</button>
-<button id="btnMapRegion">MapRegion</button>
-<button id="btnMapProvince">MapProvince</button>
-<button id="btnTable">Table</button>
- --> 
-
-
+ 
 
   </body>
 </html>

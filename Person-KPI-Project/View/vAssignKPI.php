@@ -94,10 +94,12 @@
 		<td>
 			<input type="button" value="Search" id="assign_kpi_search"  class="btn btn-primary btn-sm">
 		</td>
+		<!-- 
 		<td>&nbsp;</td>
 		<td>
 			<input type="button" value="Assign KPIs" id="assign_kpi_all"  class="btn btn-danger btn-xs">
 		</td>
+		 -->
 	</tr>
 	</table>
 </div>
@@ -183,19 +185,19 @@
 		<tr>
 			<td class='text-right'><b>KPIs Weight</td>
 			<td >
-				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control input-sm"  style="width:150px;"
+				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control input-sm"  style="width:150px;">
 			</td>
 		</tr>
 		<tr>
 			<td class='text-right'><b>Target Data</b></td>
 			<td >
-				<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control input-sm" style="background: #ddd; width:150px;">
+				<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control input-sm" style="background: #ddd; width:150px;"  disabled>
 			</td>
 		</tr>
 		<tr>
 			<td class='text-right'><b>Target Score</b></td>
 			<td >
-				<input type="text" id="target_score" name="target_score"  class="form-control input-sm" style="background: #ddd; width:150px;">
+				<input type="text" id="target_score" name="target_score"  class="form-control input-sm" style="background: #ddd; width:150px;" disabled>
 			</td>
 		</tr>
 		<tr>
@@ -206,7 +208,7 @@
 		
 		</tr>
 		<tr>
-			<td class='text-right'><b> Actual Score</b></td>
+			<td class='text-right'><b> Actual Data</b></td>
 			<td id="areaKPIActual">
 			 
 				<input id="kpi_actual_manual" name="kpi_actual_manual" value="0.00"  class="form-control input-sm" style="width:150px;">
@@ -218,7 +220,7 @@
 			<td class='text-right'><b>KPI Score</b></td>
 			<td id="areaKPIActualScore">
 			 
-				<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control input-sm" value="0.00" style="background: #ddd;width:150px;" >
+				<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control input-sm" value="0.00" style="background: #ddd;width:150px;" disabled>
 				
 			</td>
 		</tr>
@@ -227,11 +229,12 @@
 			<td class='text-right'><b>Performance% </b></td>
 			<td id="areTotalKpiScore">
 			
-				<input id="performance" name="performance"  class="form-control input-sm" value="0.00" style="background: #ddd;width:150px;">
+				<input id="performance" name="performance"  class="form-control input-sm" value="0.00" style="background: #ddd;width:150px;" disabled>
 				
 				
 			</td>
 		</tr>
+		<!-- 
 		<tr>
 			<td class='text-right'><b>Total  Score</b></td>
 			<td id="areTotalKpiScore">
@@ -241,7 +244,7 @@
 				
 			</td>
 		</tr>
-		
+		 -->
 		
 		<tr>
 			<td ></td>

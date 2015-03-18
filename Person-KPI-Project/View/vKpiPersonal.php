@@ -118,13 +118,13 @@ $emp_id=$_GET['emp_id'];
 						                </colgroup>
 						                <thead>
 						                    <tr>
-						                        <th data-field="Field1"><b>CODE</b></th>
-						                        <th data-field="Field2"><b>NAME</b></th>
-						                        <th data-field="Field3"><b>TARGET</b></th>
-						                        <th data-field="Field4"><b>ACTUAL</b></th>
-						                        <th data-field="Field5"><b>GRAPH</b></th>
-						                        <th data-field="Field6"><b>GRAPH</b></th>
-						                        <th data-field="Field7"><b>STATUS</b></th>
+						                        <th data-field="Field1"><b>Code</b></th>
+						                        <th data-field="Field2"><b>Name</b></th>
+						                        <th data-field="Field3"><b>Target</b></th>
+						                        <th data-field="Field4"><b>Actual</b></th>
+						                        <th data-field="Field5"><b>Graph</b></th>
+						                        <th data-field="Field6"><b>T&Actual</b></th>
+						                        <th data-field="Field7"><b>Status</b></th>
 						                    </tr>
 						                </thead>
 						                <tbody>
@@ -187,7 +187,7 @@ $emp_id=$_GET['emp_id'];
 		    	
 		    	<row>
 		    		
-		    		<div class="col-md-4">
+		    		<div class="col-md-12">
 		    		 	
 		    		 	<!-- ### Panel Start ### -->
 							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
@@ -206,6 +206,7 @@ $emp_id=$_GET['emp_id'];
 		    		
 					<div class="col-md-4">
 						<!-- ### Panel Start ### -->
+						<!-- 
 							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 									  <div class="panel-heading">
 										<B><i class="glyphicon glyphicon-flash"></i> ผลการประเมินเทียบ KPI			</B>
@@ -219,12 +220,14 @@ $emp_id=$_GET['emp_id'];
 									 		
 									  </div>
 							</div>
+							 -->
 							<!-- ### Panel End ### -->
 							
 						 
 					</div>
 					<div class="col-md-4">
 						<!-- ### Panel Start ### -->
+						<!-- 
 							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 									  <div class="panel-heading">
 										<B><i class="glyphicon glyphicon-flash"></i> ข้อเสนอแนะ		</B>
@@ -232,7 +235,7 @@ $emp_id=$_GET['emp_id'];
 									  <div class="panel-body panel-body-bottom" style="padding: 0px;margin-bottom: 0px;">
 									  
 									 		
-									 		<!--  table grid start -->
+									 		
 					    			<table id="gridPersonalSuggestion-<?=$emp_id?>">
 						                <colgroup>
 						                    <col style="width:5%"/>
@@ -242,7 +245,7 @@ $emp_id=$_GET['emp_id'];
 						                <thead>
 						                    <tr>
 						                        <th data-field="Field1"><b>KPI</b></th>
-						                        <th data-field="Field2"><b>SUGGESTION</b></th>
+						                        <th data-field="Field2"><b>Suggestion</b></th>
 						                     
 						                    </tr>
 						                </thead>
@@ -256,12 +259,13 @@ $emp_id=$_GET['emp_id'];
 						                </tbody>
 						            </table>
 						            
-					    			<!--  table grid end -->
+					    			
 									 		
 								    	
 									 		
 									  </div>
 							</div>
+							 -->
 							<!-- ### Panel End ### -->
 							
 						 

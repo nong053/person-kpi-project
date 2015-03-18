@@ -249,10 +249,162 @@ year	2012
 	mysql_close($conn);
 }
 
+
+if($_POST['action']=="showDataAssignAll"){
+
+	$strSQL="
+
+	select ak.appraisal_period_id,ak.assign_kpi_id,kpi_name,ak.kpi_weight,ak.target_data,ak.target_score,ak.kpi_type_actual,ak.kpi_actual_manual,ak.kpi_actual_query
+	from assign_kpi_all ak
+	inner JOIN kpi
+	on ak.kpi_id=kpi.kpi_id
+	where  (ak.assign_kpi_year='$year' or '$year'='All')
+	and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	and (ak.position_id='$position_id' or '$position_id'='All')
+	and (ak.department_id='$department_id' or '$department_id'='All')
+	and ak.admin_id='$admin_id'
+	";
+
+
+
+	$result=mysql_query($strSQL);
+	$$tableHTML="";
+			$i=1;
+			$tableHTML.="<table id='TableassignKpi' class='grid table-striped'>";
+			$tableHTML.="<colgroup>";
+			$tableHTML.="<col style='width:5%' />";
+			$tableHTML.="<col  style='width:50%'/>";
+			$tableHTML.="<col />";
+			$tableHTML.="<col />";
+
+			$tableHTML.="</colgroup>";
+			$tableHTML.="<thead>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<th><b>Code</b></th>";
+			$tableHTML.="<th><b>KPI Name</b></th>";
+			$tableHTML.="<th><b>Weight</b></th>";
+			$tableHTML.="<th><b>Target </b></th>";
+			$tableHTML.="<th><b>Actual</b></th>";
+			$tableHTML.="<th><b>Target Score</b></th>";
+			$tableHTML.="<th><b>Manage</b></th>";
+
+				
+			$tableHTML.="</tr>";
+			$tableHTML.="</thead>";
+
+			while($rs=mysql_fetch_array($result)){
+
+				if($rs['kpi_type_actual']=="0"){
+					$kpi_actual=$rs['kpi_actual_manual'];
+				}else{
+					$kpi_actual=$rs['kpi_actual_query'];
+				}
+				$tableHTML.="<tbody class=\"contentassignKpi\">";
+				$tableHTML.="<tr>";
+				$tableHTML.="	<td>".$i."</td>";
+				$tableHTML.="	<td>".$rs['kpi_name']."</td>";
+				$tableHTML.="	<td>".$rs['kpi_weight']."</td>";
+				$tableHTML.="	<td>".$rs['target_data']."</td>";
+				$tableHTML.="	<td>".$kpi_actual."</td>";
+				$tableHTML.="	<td>".$rs['target_score']."</td>";
+
+				$tableHTML.="	<td>
+			<button type='button' id='idEdit-".$rs['assign_kpi_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
+			<button type='button' id='idDel-".$rs['assign_kpi_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
+		
+			</td>";
+				$tableHTML.="</tr>";
+
+				$i++;
+			}
+			$tableHTML.="</tbody>";
+			$tableHTML.="</table>";
+			echo $tableHTML;
+			mysql_close($conn);
+}
+
+
+if($_POST['action']=="addAssignAll"){
+
+	
+	$strSQLCount="select count(*) AS countRow from assign_kpi where
+	(assign_kpi_year='$year' or '$year'='All') and
+	(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
+	(department_id='$department_id' or '$department_id'='All') and
+	(position_id='$position_id' or '$position_id'='All') and
+	(emp_id='$employee_id' or '$employee_id'='All') and
+	(kpi_id='$kpi_id' or '$kpi_id'='All')
+	";
+	
+	$rsCount=mysql_query($strSQLCount);
+	$resultCount=mysql_fetch_array($rsCount);
+
+	if($resultCount['countRow']==0){
+
+		if($assignAll=="All"){
+			//loop insert kpi if select All param into assign start
+			$strSQLselectEmp="
+			select e.*,pe.position_name,r.role_name,d.department_name
+			from employee e
+			INNER JOIN position_emp pe on e.position_id=pe.position_id
+			INNER JOIN role r on pe.role_id=r.role_id
+			INNER JOIN department d on e.department_id=d.department_id
+			where (e.department_id='$department_id' or '$department_id' ='All')
+			and (e.position_id='$position_id' or '$position_id' ='All')
+			and e.emp_status_work_id='1'
+			and e.admin_id='$admin_id'
+			order by e.emp_id
+			";
+			$resultSelectEmp=mysql_query($strSQLselectEmp);
+			while($rsSelectEmp=mysql_fetch_array($resultSelectEmp)){
+
+				$strSQL="INSERT INTO assign_kpi(assign_kpi_year,appraisal_period_id,emp_id,position_id,kpi_weight,kpi_type_actual,
+				kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id)
+				VALUES('$year','$appraisal_period_id','$rsSelectEmp[emp_id]','$rsSelectEmp[position_id]','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
+				'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id')";
+				$rs=mysql_query($strSQL);
+
+				if($rs){
+					echo'["success"]';
+				}else{
+					echo mysql_error();
+				}
+
+			}
+				
+		}else{
+
+
+			$strSQL="INSERT INTO assign_kpi(assign_kpi_year,appraisal_period_id,emp_id,position_id,kpi_weight,kpi_type_actual,
+			kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id)
+			VALUES('$year','$appraisal_period_id','$employee_id','$position_id','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
+			'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id')";
+			$rs=mysql_query($strSQL);
+			if($rs){
+				echo'["success"]';
+			}else{
+				echo mysql_error();
+			}
+
+
+		}
+			
+	}else{
+		echo'["key-duplicate"]';
+	}
+	//Loop insert kpi if select All param into assign end
+
+
+
+	mysql_close($conn);
+}
+
+
+
 if($_POST['action']=="showData"){
 	//echo "Show Data";
-	/*
-	$strSQL="select ak.*,ap.appraisal_period_desc,e.emp_name,pe.position_name from assign_kpi ak
+/*
+$strSQL="select ak.*,ap.appraisal_period_desc,e.emp_name,pe.position_name from assign_kpi ak
 left join appraisal_period ap on ak.appraisal_period_id=ap.appraisal_period_id
 left join employee e on ak.emp_id=e.emp_id
 left join position_emp pe on ak.position_id=pe.position_id
@@ -283,6 +435,8 @@ $division_id=$_POST['division_id'];
 	and (ak.department_id='$department_id' or '$department_id'='All')
 	and ak.admin_id='$admin_id' 
 	";
+	
+	
 	
 	$result=mysql_query($strSQL);
 	$$tableHTML="";

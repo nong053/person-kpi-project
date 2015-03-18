@@ -1,7 +1,5 @@
 <? session_start();?>
-<?php 
-echo 	$_SESSION['admin_name']=$rs['admin_name'];
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +8,14 @@ echo 	$_SESSION['admin_name']=$rs['admin_name'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="css/bootstrap-overrides.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href="Css/bootstrap.min.css" rel="stylesheet">
+    <link href="Css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="Css/bootstrap-overrides.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/sign-up.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="Css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="Css/sign-up.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -45,7 +43,19 @@ echo 	$_SESSION['admin_name']=$rs['admin_name'];
     <div id="sign_up2">
         <div class="container">
             <div class="section_header">
-                <h3>ลงชื่อเข้าใช้งาน </h3>
+                <h3>ลงชื่อเข้าใช้งาน  
+                <?php //echo $rs['admin_name'];
+				if($_GET['admin_name']!=""){
+					$_SESSION['admin_name']=$_GET['admin_name'];
+				}else{
+					$_SESSION['admin_name']=$rs['admin_name'];
+				}
+				
+                if($_SESSION['admin_name']){ 
+					echo "(".$_SESSION['admin_name'].")";
+                } 
+                ?>
+                </h3>
             </div>
             <div class="row login">
                 <div class="span5 left_box">
@@ -96,9 +106,46 @@ echo 	$_SESSION['admin_name']=$rs['admin_name'];
                                     
                                    
                                     <input type="submit" value="sign up">
+                                  <center>  <h2>Example Role</h2></center>
+                                  <hr>
+                                    <table>
+                                    	<tr>
+                                    		<td colspan="2"><b>CEO Position</b></td>
+                                    	</tr>
+                                    	<tr>
+                                    		<td >
+                                    		User Name: <font color="green"><b>ceo</b></font>
+                                    		</td>
+                                    		<td>
+                                    		Password: <font color="green"><b>ceo</b></font>
+                                    		</td>
+                                    	</tr>
+                                    	<tr>
+                                    		<td colspan="2"><b>Chief Position</b></td>
+                                    	</tr>
+                                    	<tr>
+                                    		<td >
+                                    		User Name: <font color="green"><b>chief</b></font>
+                                    		</td>
+                                    		<td>
+                                    		Password: <font color="green"><b>chief</b></font>
+                                    		</td>
+                                    	</tr>
+                                    	<tr>
+                                    		<td colspan="2"><b>Employee Position</b></td>
+                                    	</tr>
+                                    	<tr>
+                                    		<td>
+                                    		User Name: <font color="green"><b>emp99</b></font>
+                                    		</td>
+                                    		<td>
+                                    		Password: <font color="green"><b>emp99</b></font>
+                                    		</td>
+                                    	</tr>
+                                    </table>
                                 </form>
                             </div>
-
+							
                         </div>
                     </div>
                 </div>

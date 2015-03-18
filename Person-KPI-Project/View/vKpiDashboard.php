@@ -93,7 +93,7 @@ $department_name=$_GET['department_name'];
 													
 												</td>
 												<td>
-													<button id="appraisalPeriodSubmit" class="btn btn-primary btn-sm" >ตกลง</button>
+													<button id="kpiDashboardSubmit" class="btn btn-primary btn-sm" >ตกลง</button>
 												</td>
 											</tr>
 											

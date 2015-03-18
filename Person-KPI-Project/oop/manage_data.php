@@ -1,12 +1,19 @@
 
 <?php
 class connect_mysql{
+	//SERVER REAL
 	
 	var $var_hostname = "localhost";
 	var $var_user = "root";
 	var $var_pass ="010535546";
 	var $var_dbname= "person_kpi";
-
+	
+	/*
+	var $var_hostname = "localhost";
+	var $var_user = "dashboar";
+	var $var_pass ="010535546";
+	var $var_dbname= "dashboar_kpi";
+	*/
 
 /*
 	var $var_hostname = "localhost";
