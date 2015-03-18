@@ -1,28 +1,16 @@
-<?php session_start();?>
+<?php session_start();
 
-<?php 
-/*
-echo "page=".$_GET["page"];
-echo "<br>";
-echo "main_menu_id=".$_GET["main_menu_id"];
-echo "<br>";
-echo "userName=".$_GET["userName"];
-echo "<br>";
-echo "pageIndex=".$_GET["pageIndex"];
-*/
-
+//Get Host Name 
 $host=$_SERVER['HTTP_HOST'];
-
-
 $domain = explode(".", $host);
 $admin_username = "";
 
 
 include_once 'config.inc.php';
 
-
-
-
+//for demo delete start;
+$_GET['userName']="demo_admin";
+//for demo delete end;
 
 if(!$_GET['userName']){
 	
@@ -44,8 +32,6 @@ if($_SESSION['subDomain']!=""){
 	$subDomain="";
 }
 
-//echo"admin_username=".$admin_username."<br>";
-
 $query_admin="select * from admin where admin_username='$admin_username' and admin_status!=0";
 $result_admin=mysql_query($query_admin);
 $rs_num=mysql_num_rows($result_admin);
@@ -54,9 +40,9 @@ if($rs_num){
 	$_SESSION['admin_id']=$rs[admin_id];
 	$_SESSION['admin_username']=$rs[admin_username];
 	$admin_id=$_SESSION['admin_id'];
-	//echo"admin_id=".$rs[admin_id]."<br>";
 	
 	// ###################   INCLUDE FILE FOR INDEX.PHP START   ################
+	
 	include("login.php");
 	
 }else{

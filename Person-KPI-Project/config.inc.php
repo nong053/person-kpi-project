@@ -1,8 +1,16 @@
 <?php 
 $host="localhost";
+//SERVER REAL
+
 $user="root";
 $pass="010535546";
 $db="person_kpi";
+
+/*
+$user="dashboar";
+$pass="010535546";
+$db="dashboar_kpi";
+*/
 $conn=mysql_connect($host,$user,$pass);
 if($conn){
 	mysql_query("SET NAMES UTF8");

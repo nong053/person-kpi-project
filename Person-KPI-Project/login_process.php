@@ -60,15 +60,14 @@ if($num=mysql_num_rows($result)){
 		$_SESSION['admin_id']="";
 		$_SESSION['admin_name']="";
 		$_SESSION['admin_surname']="";
-*/
+		*/
 		
 		
 	// "emp here..";
 	echo"<script>window.location='View/index.php?emp_id=".$_SESSION['emp_ses_id']."'</script>";
 	}else{
 	$_SESSION['ERORRLOGIN']="รหัสผ่านไม่ถูกต้อง";
-	echo"<script>window.location='login.php'</script>";
-				
+	echo"<script>window.location='login.php?admin_name=".$_SESSION['admin_name']."'</script>";
 	}
 		
 	echo "emp_leve=".$_SESSION['emp_leve'];

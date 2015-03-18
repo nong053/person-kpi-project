@@ -58,11 +58,18 @@
 	float:left;
 	font-weight:bold;
 	/*position: absolute;*/
-	width: 80%;
+	width: 100%;
 }
 .box-title-r{
+	/*
 	width:90px;
 	float:right;
+	*/
+	float: right;
+    position: absolute;
+    right: 5px;
+    width: 90px;
+    z-index: 0;
 }
 .box-title-r .boxNav{
 	width:20px;
@@ -137,7 +144,7 @@
 	
 	/*border:1px solid #cccccc;*/
 	float:left;
-	width:85px;
+	width:70px;
 }
 .boxStatus .boxTextTop{
 	
@@ -149,12 +156,12 @@
 }
 .boxStatus .boxButtonTop{
 	
-	/*border:1px solid #cccccc;*/
-	float:left;
-	width:63px;
-	font-weight:bold;
-	margin-top:15px;
-	/*height: 80px;*/
+	float: left;
+    font-weight: bold;
+    margin-top: 15px;
+    position: absolute;
+    right: 0;
+    width: 80px;
 }
 #donutStatus1{
 	width:70px;
@@ -224,7 +231,7 @@
 	margin-left:0px;
 }
 .topParameter .box5{
-	margin-top:2px;
+	margin-top:0px;
 	/*margin-left:5px;*/
 
 	}
