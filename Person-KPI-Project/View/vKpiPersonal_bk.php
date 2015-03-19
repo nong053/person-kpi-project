@@ -118,8 +118,8 @@ $emp_id=$_GET['emp_id'];
 						                </colgroup>
 						                <thead>
 						                    <tr>
-						                        <th data-field="Field1"><b></b></th>
-						                        <th data-field="Field2"><b>KPI Name</b></th>
+						                        <th data-field="Field1"><b>Code</b></th>
+						                        <th data-field="Field2"><b>Name</b></th>
 						                        <th data-field="Field3"><b>Target</b></th>
 						                        <th data-field="Field4"><b>Actual</b></th>
 						                        <th data-field="Field5"><b>Graph</b></th>
@@ -166,9 +166,28 @@ $emp_id=$_GET['emp_id'];
 
 </div>
 <div class="row">
-	
+	<!--  panel1 start -->
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		   
+									<div class="box-title-l"><span class="glyphicon glyphicon-globe"></span>
+										<B> Appraisal : ผลการประเมิน</B>
+									</div>
+									<div class="box-title-r">
+									<!-- 
+										<div class="boxNav"><span class="glyphicon glyphicon-remove"></span></div>
+										<div class="boxNav"><span class="glyphicon glyphicon-resize-full"></span></div>
+										<div class="boxNav"><span class="glyphicon glyphicon-minus"></span></div>
+										 -->
+									</div>
+									<br style="clear:both">
+								
+		  </div>
+		  <div class="panel-body">
+		    	
+		    	<row>
 		    		
-		    		<div class="col-md-12">
+		    		<div class="col-md-4">
 		    		 	
 		    		 	<!-- ### Panel Start ### -->
 							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
@@ -185,10 +204,79 @@ $emp_id=$_GET['emp_id'];
 							
 		    		</div>
 		    		
-				
-		    	 </div>
+					<div class="col-md-4">
+						<!-- ### Panel Start ### -->
+							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+									  <div class="panel-heading">
+										<B><i class="glyphicon glyphicon-flash"></i> ผลการประเมินเทียบ KPI			</B>
+									  </div>
+									  <div class="panel-body panel-body-bottom" style="padding: 5px;margin-bottom: 5px;">
+									  
+									 		
+									 			<div id="pieChartPersonal-<?=$emp_id?>" style="height:250px;"></div> 
+									 		
+								    	
+									 		
+									  </div>
+							</div>
+							<!-- ### Panel End ### -->
+							
+						 
+					</div>
+					<div class="col-md-4">
+						<!-- ### Panel Start ### -->
+							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+									  <div class="panel-heading">
+										<B><i class="glyphicon glyphicon-flash"></i> ข้อเสนอแนะ		</B>
+									  </div>
+									  <div class="panel-body panel-body-bottom" style="padding: 0px;margin-bottom: 0px;">
+									  
+									 		
+									 		<!--  table grid start -->
+					    			<table id="gridPersonalSuggestion-<?=$emp_id?>">
+						                <colgroup>
+						                    <col style="width:5%"/>
+						                    <col style="width:35%"/>
+						        
+						                </colgroup>
+						                <thead>
+						                    <tr>
+						                        <th data-field="Field1"><b>KPI</b></th>
+						                        <th data-field="Field2"><b>Suggestion</b></th>
+						                     
+						                    </tr>
+						                </thead>
+						                <tbody>
+						                    <tr>
+						                        <td></td>
+						                        <td></td>
+						                        <td></td>
+						                      
+						                    </tr>
+						                </tbody>
+						            </table>
+						            
+					    			<!--  table grid end -->
+									 		
+								    	
+									 		
+									  </div>
+							</div>
+							<!-- ### Panel End ### -->
+							
+						 
+					</div>
+		    		
+		    	</row>
+		    	
+		    	
+		    	
+		  </div>
 		
-
+		</div>
+		<!-- panel 1 end -->
+	
+</div>
 
 
 

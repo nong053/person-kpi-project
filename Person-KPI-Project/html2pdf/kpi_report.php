@@ -17,7 +17,7 @@ include '../Model/config.php';
 if($emp_id!=""){
 	$strSQL="
 	
-		select e.*,pe.position_name,ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) AS score_final_percentage,
+		select e.*,pe.position_name,d.department_name,ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) AS score_final_percentage,
 		ROUND(sum(kr.score_sum_percentage )/count(kr.appraisal_period_id),2) as score_sum_percentage,
 		ROUND(sum(kr.adjust_percentage)/count(kr.appraisal_period_id),2) as adjust_percentage,
 		kr.adjust_reason,ap.appraisal_period_desc,
@@ -26,6 +26,8 @@ if($emp_id!=""){
 		ON e.position_id=pe.position_id
 		INNER JOIN kpi_result kr
 		ON e.emp_id=kr.emp_id
+		INNER JOIN department d
+		ON d.department_id=e.department_id
 		INNER JOIN appraisal_period ap 
 		ON ap.appraisal_period_id=kr.appraisal_period_id
 		WHERE kr.kpi_year='$kpi_year'
@@ -41,7 +43,7 @@ if($emp_id!=""){
 }else{
 	$strSQL="
 
-		select e.*,pe.position_name,ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) AS score_final_percentage,
+		select e.*,pe.position_name,d.department_name,ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) AS score_final_percentage,
 		ROUND(sum(kr.score_sum_percentage )/count(kr.appraisal_period_id),2) as score_sum_percentage,
 		ROUND(sum(kr.adjust_percentage)/count(kr.appraisal_period_id),2) as adjust_percentage,
 		kr.adjust_reason,ap.appraisal_period_desc,
@@ -50,6 +52,8 @@ if($emp_id!=""){
 		ON e.position_id=pe.position_id
 		INNER JOIN kpi_result kr
 		ON e.emp_id=kr.emp_id
+		INNER JOIN department d
+		ON d.department_id=e.department_id
 		INNER JOIN appraisal_period ap 
 		ON ap.appraisal_period_id=kr.appraisal_period_id
 		WHERE kr.kpi_year='$kpi_year'
@@ -77,6 +81,9 @@ while($rs=mysql_fetch_array($result)){
 			<tr>
   				<td ><b>ปีการประเมิน</b></td>
   				<td><b>".$kpi_year."</b></td>
+  				<td ><b>แผนก</b></td>
+  						
+  				<td> <b>".$rs['department_name']."</b></td>
   				<td ><b>รอบการประเมิน</b></td>
   						
   				<td> <b>".$appraisal_period_desc."</b></td>

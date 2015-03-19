@@ -501,12 +501,17 @@ var checkBrowserFn=function(){
 				 			 <a href="#" id="kpi" class=""><i class="iconMenu glyphicon glyphicon-signal"></i>  <span class="menu-text">KPIs</span></a>
 				 		 	<b class="arrow"></b>
 				 		 </li>
+				 		 <li >
+				  			<a href="#" id="assignMasterKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> Assign KPI</span></a>
+				  			<b class="arrow"></b>
+				  		</li>
+				  		
 				 		<li >
 				  			<a href="#" id="employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> Employee</span></a>
 				  			<b class="arrow"></b>
 				  		</li>
 				  		<li >
-				  			<a href="#" id="assignKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> Assign KPI</span></a>
+				  			<a href="#" id="assignKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> KPI Result</span></a>
 				  			<b class="arrow"></b>
 				  		</li>
 				  		<?php 

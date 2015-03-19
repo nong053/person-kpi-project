@@ -36,8 +36,8 @@
  </style>
  
 <div role="alert" class="alert alert-info">
-     <h2> <strong>KPI Result</strong></h2>
-   		เพื่อทำการกรอกผลการปฏิบัติงานราย KPI ให้กับพนักงาน
+     <h2> <strong>Assign KPI</strong></h2>
+   		เพื่อทำการมอบหมาย KPI ที่ต้องวัดผลการปฏิบัติงานให้กับพนักงาน
     </div>
 
 
@@ -93,6 +93,9 @@
 		<td>&nbsp;</td>
 		<td>
 			<input type="button" value="Search" id="assign_kpi_search"  class="btn btn-primary btn-sm">
+			<!-- 
+			<button class="actionAssignMasterKPI btn btn-danger btn-xs" id="idAssignMasterKPI" type="button">Assign Master KPI</button>
+			 -->
 		</td>
 		<!-- 
 		<td>&nbsp;</td>
@@ -104,7 +107,7 @@
 	</table>
 </div>
 
-
+<!-- 
 	<div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
 				<b>Employee List</b>			
@@ -115,7 +118,7 @@
 			 		
 			  </div>
 	</div>
-	
+ -->
 	
 	<div class="alert alert-info bg-from" role="alert">
 		
