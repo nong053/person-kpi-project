@@ -686,6 +686,30 @@ $(document).ready(function(){
 	});
 
 	/* end call kpiBaseLine  */
+	/* start call assignKPI master  */
+	$("#assignMasterKPI").click(function(){
+		
+		$(".topParameter").hide();
+		$.ajax({
+			url:"../View/vAssignMasterKPI.php",
+			type:"get",
+			dataType:"html",
+			success:function(data){
+				$("#mainContent").html(data);
+				callProgramControl("cAssignMasterKpi.js");
+				//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#division_id").val(),$("#position_id").val(),$("#employee_id").val());
+				//showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#division_id_emb").val(),$("#position_id_emb").val());
+				
+				/*add subject on page*/
+				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-signal\"></i> "+$("#assignMasterKPI >.menu-text").text()+"</b>";
+				$("#subjectPage").html(subjectPage);
+			
+			}
+		});
+		
+		
+	});
+	/* end call assignKPI  master*/
 	/* start call appraisalPeriod  */
 	$("#appraisalPeriod").click(function(){
 		$(".topParameter").hide();

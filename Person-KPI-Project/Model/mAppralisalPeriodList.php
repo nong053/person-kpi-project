@@ -15,7 +15,7 @@ $admin_id=$_SESSION['admin_id'];
 		and admin_id='$admin_id'
 		ORDER BY appraisal_period_id ASC
 		)queryA
-		ORDER BY seq  ASC";
+		ORDER BY seq,appraisal_period_id  ASC";
 	}else{
 		$strSQL="
 		select appraisal_period_id,appraisal_period_desc,1 as seq from appraisal_period where  appraisal_period_year ='$year'

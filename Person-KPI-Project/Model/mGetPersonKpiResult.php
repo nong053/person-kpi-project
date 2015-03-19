@@ -60,22 +60,52 @@ and kr.position_id=ak.position_id
 
 if($_GET['action']=='bar_chart_appraisal'){
 	$kpi_year_plus=$kpi_year+1;
+	$kpi_year_del1=$kpi_year-1;
 	$strSQL="	
+	
 	select kpi_year,GROUP_CONCAT(IFNULL(kr.score_final_percentage,0)) as actual_score,
 GROUP_CONCAT(ap.appraisal_period_desc) as appraisal
 from kpi_result kr
 INNER JOIN appraisal_period ap 
 on kr.appraisal_period_id=ap.appraisal_period_id
 where   emp_id='$emp_id'
-and kpi_year<='$kpi_year_plus'
+and kpi_year='$kpi_year_del1'
+and kr.admin_id='$admin_id'
+and kr.approve_flag='Y'
+GROUP BY kpi_year
+	
+UNION
+
+	select kpi_year,GROUP_CONCAT(IFNULL(kr.score_final_percentage,0)) as actual_score,
+GROUP_CONCAT(ap.appraisal_period_desc) as appraisal
+from kpi_result kr
+INNER JOIN appraisal_period ap 
+on kr.appraisal_period_id=ap.appraisal_period_id
+where   emp_id='$emp_id'
+and kpi_year='$kpi_year'
 and kr.admin_id='$admin_id'
 and kr.approve_flag='Y'
 GROUP BY kpi_year
 
 union
+
+select kpi_year,GROUP_CONCAT(IFNULL(kr.score_final_percentage,0)) as actual_score,
+GROUP_CONCAT(ap.appraisal_period_desc) as appraisal
+from kpi_result kr
+INNER JOIN appraisal_period ap 
+on kr.appraisal_period_id=ap.appraisal_period_id
+where   emp_id='$emp_id'
+and kpi_year='$kpi_year_plus'
+and kr.admin_id='$admin_id'
+and kr.approve_flag='Y'
+GROUP BY kpi_year
+
+
+union
 select 'Target' as kpi_year,   GROUP_CONCAT(IFNULL(ap.appraisal_period_target_percentage,0))as actual_score,'' as appraisal from appraisal_period ap
 where appraisal_period_year='$kpi_year'
 and admin_id='$admin_id'
+
 	";
 	$columnName="kpi_year,actual_score,appraisal";
 	genarateJson($strSQL,$columnName,$conn);

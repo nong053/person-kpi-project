@@ -168,7 +168,7 @@ function detailInit(e) {
 					});
 					// ################ Genarate Person KPI GRID  END  ################# //
 					// ################ Genarate Person KPI GRID  MISSION START ################# //
-					
+					/*
 					$.ajax({
 						url:"../Model/mGetPersonKpiResult.php",
 						type:"get",
@@ -208,7 +208,7 @@ function detailInit(e) {
 
 						}
 					});
-					
+					*/
 					// ################ Genarate Person KPI GRID MISSION END  ################# //
 					// Gauge for check data value start
 					/*
@@ -412,6 +412,7 @@ function detailInit(e) {
 					
 					 /*bar chart end*/
 					 /*pie Chart Personal start*/
+					/*
 					$.ajax({
 						//url:"../Model/mGetPersonKpiResult.php",
 						url:"../Model/mGetPersonKpiResult.php",
@@ -468,7 +469,7 @@ function detailInit(e) {
 				                }],
 				                tooltip: {
 				                    visible: true,
-				                    /*format: "{0}%"*/
+				                    //format: "{0}%"
 				                    template: "#= category # - #= kendo.format('{0:P}', percentage) #"
 				                }
 				            });
@@ -476,6 +477,7 @@ function detailInit(e) {
 							
 						}
 					});
+					*/
 					 /*pie Chart Personal end*/
 					 
 					 /*startline start*/
@@ -539,7 +541,8 @@ function detailInit(e) {
 								textJson+="\"field5\":\"<div class='textR'>"+EntryIndex[3]+"</div>\",";
 								textJson+="\"field6\":\"<div class='textR'><div class='lineSparkline'>"+score_spraph+"</div></div>\",";
 								textJson+="\"field7\":\"<div class='textR'><div class='sparklineBullet'>"+EntryIndex[3]+",100,100,"+EntryIndex[4]+"</div></div>\",";
-								textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<div>\"";
+								textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<div>\",";
+								textJson+="\"field9\":\"<div class='textR'><center><a href='#' class='downloadPDFbyPerson' id='id-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></center><div>\"";
 								
 							textJson+="}";
 					}
@@ -557,11 +560,12 @@ function detailInit(e) {
 			gridDepartment+="<colgroup>";
 				gridDepartment+="<col style=\"width:5%\"/>";
 				gridDepartment+="<col style=\"width:20%\" />";
-				gridDepartment+="<col style=\"width:15%\" />";
+				gridDepartment+="<col style=\"width:10%\" />";
 				gridDepartment+="<col style=\"width:10%\" />";
 				gridDepartment+="<col style=\"width:10%\" />";
 				gridDepartment+="<col style=\"width:8%\"  />";
 				gridDepartment+="<col  style=\"width:10%\" />";
+				gridDepartment+="<col  style=\"width:8%\" />";
 				/*gridDepartment+="<col style=\"width:70px\"  />";*/
 			gridDepartment+="</colgroup>";
 				gridDepartment+="<thead>";
@@ -575,6 +579,7 @@ function detailInit(e) {
 						gridDepartment+="<th data-field=\"field6\"><center><b>กราฟคะแนน</center></th>";
 						gridDepartment+="<th data-field=\"field7\"><center><b>เทียบเป้า</b></center></th>";
 						gridDepartment+="<th data-field=\"field8\"><center><b>สถานนะ</b></center></th>";
+						gridDepartment+="<th data-field=\"field9\"><center><b>PDF</b></center></th>";
 						  
 				
 						gridDepartment+="</tr>";
@@ -612,15 +617,32 @@ function detailInit(e) {
 		}
 	});
 	// ################ Genarate GRID ################# //
-	// ################ button top right start  in panel ###########
+	// ################ button top right start  in panel ##########
+	// press button for download by person start
+		$(".downloadPDFbyPerson").click(function(){
+			
+			var emp_id= this.id.split("-");
+			emp_id=emp_id[1];
+			fnLinkToPDF(emp_id);
+		});
+	// press button for download by person end
+	// press button for download KPI PDF
+	var fnLinkToPDF=function(emp_id){
+		if(undefined!=emp_id){
+			window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"&emp_id="+emp_id+"", "_blank");
+		}else{
+			window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"", "_blank");
+		}
+	}
 	$(".glyphicon-download-alt").click(function(){
+		
 		if(undefined!=emp_id){
 			window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"&emp_id="+emp_id+"", "_blank");
 		}else{
 			window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"", "_blank");
 		}
 	});
-	//$("#departmentArea").show():
+
 	$(".glyphicon-minus").click(function(){
 		
 		$(".departmentArea").slideUp();
