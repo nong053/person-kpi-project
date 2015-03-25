@@ -724,7 +724,7 @@ $(document).ready(function(){
 	/*KPI lIST START*/
 	var kpiAction=function(action){
 		
-		
+
 	
 		
 		$("#kpi_id").on("change",function(){
@@ -776,7 +776,7 @@ $(document).ready(function(){
 	}
 	kpiAction();
 	$("#kpi_id").change();
-	
+
 	
 	/*kpi_actual_manual fill status start*/
 	$("#kpi_actual_manual").keyup(function(){
