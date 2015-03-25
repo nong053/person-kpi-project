@@ -100,6 +100,7 @@ $(document).ready(function(){
 								
 								$("#kpiAction").val("editAction");
 								$("#kpiId").val(data[0]["kpi_id"]);
+								$("#kpiCode").val(data[0]["kpi_code"]);
 								$("#kpiSubmit").val("Edit");
 								
 								

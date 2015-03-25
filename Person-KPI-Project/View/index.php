@@ -4,6 +4,8 @@
 
 if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
 	header( "location: ../login.php?admin_name=".$_SESSION['admin_name']."" );
+	//header( "location: ../login.php?admin_name=Demo.V1" );
+	
 	echo "redirect";
 	exit(0);	
 }
@@ -497,6 +499,10 @@ var checkBrowserFn=function(){
 				  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> Position</span></a>
 				  			<b class="arrow"></b>
 				  		</li>
+				  		<li >
+				  			<a href="#" id="employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> Employee</span></a>
+				  			<b class="arrow"></b>
+				  		</li>
 				  		<li>
 				 			 <a href="#" id="kpi" class=""><i class="iconMenu glyphicon glyphicon-signal"></i>  <span class="menu-text">KPIs</span></a>
 				 		 	<b class="arrow"></b>
@@ -506,14 +512,12 @@ var checkBrowserFn=function(){
 				  			<b class="arrow"></b>
 				  		</li>
 				  		
-				 		<li >
-				  			<a href="#" id="employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> Employee</span></a>
-				  			<b class="arrow"></b>
-				  		</li>
+				 		
 				  		<li >
 				  			<a href="#" id="assignKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> KPI Result</span></a>
 				  			<b class="arrow"></b>
 				  		</li>
+				  		
 				  		<?php 
 					  		if(($_SESSION['admin_status']==3) or ($_SESSION['admin_status']==1 
 							or ($_SESSION['emp_role_leve']=="Level1")
@@ -528,6 +532,10 @@ var checkBrowserFn=function(){
 					  		}
 				  		}
 				  		?>
+				  		<li >
+				  			<a href="#" id="btnResetData" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> Reset Data</span></a>
+				  			<b class="arrow"></b>
+				  		</li>
 					
 					
 				</ul>

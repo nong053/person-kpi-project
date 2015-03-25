@@ -1,9 +1,6 @@
 $(document).ready(function(){
 	
-	
-	
-	
-	
+
 	//dropdown List AppralisalPeriod start
 	var fnDropdownListAppralisal=function(year,appraisal_period_id){
 		

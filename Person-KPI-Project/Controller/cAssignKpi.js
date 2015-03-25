@@ -108,7 +108,7 @@ $(document).ready(function(){
 		$("#kpi_id").change();
 		
 		
-		$("#kpi_weight").val("");
+		$("#kpi_weight").val("0.00");
 		//$("#kpi_target_data").val("");
 		//$("#target_score").val("");
 		$("#kpi_actual_score").val("0.00");
@@ -183,7 +183,26 @@ $(document).ready(function(){
 							alert(positionId);
 							alert(empId);
 							*/
-							showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),depId,positionId,empId);
+							
+							// Copy KPI Assign Master to KPI Assign Auto Matic START
+							
+							$.ajax({
+								url:"../Model/mAssignKpi.php",
+								type:"post",
+								dataType:"json",
+								async:false,
+								data:{"action":"copyAssignMasterKpi","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
+									"position_id":position_id,"employee_id":empId},
+								success:function(data){
+									//alert(data[0]);
+									showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),depId,positionId,empId);
+								}
+							});
+							
+							// Copy KPI Assign Master to KPI Assign Auto Matic END
+							
+							
+							
 							
 							$("#assignKpiShowData").show();
 							$("#formKPI").show();
@@ -305,7 +324,7 @@ $(document).ready(function(){
 		alert("employee_id="+employee_id);
 		*/
 		
-		
+	
 		/*calculte weight kpi start*/
 		$.ajax({
 			url:"../Model/mAssignKpi.php",
@@ -437,25 +456,26 @@ $(document).ready(function(){
 				 $(".actionDel").click(function(){
 					 //alert("hello");
 					 //alert(this.id);
-					 
-					 var idDel=this.id.split("-");
-					 var id=idDel[1];
-					 $.ajax({
-							url:"../Model/mAssignKpi.php",
-							type:"post",
-							dataType:"json",
-							data:{"id":id,"action":"del","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
-								"position_id":position_id,"employee_id":employee_id},
-							success:function(data){
-								if(data[0]=="success"){
-									alert("ลบข้อมูลเรียบร้อย");	
-									//showDataAssignKpi();
-									showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val(),$("#emp_assign_id_emb").val());
-									//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#position_id").val(),$("#employee_id").val());
-									showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
+					 if(confirm("Do you want to delete this KPI?")){
+						 var idDel=this.id.split("-");
+						 var id=idDel[1];
+						 $.ajax({
+								url:"../Model/mAssignKpi.php",
+								type:"post",
+								dataType:"json",
+								data:{"id":id,"action":"del","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
+									"position_id":position_id,"employee_id":employee_id},
+								success:function(data){
+									if(data[0]=="success"){
+										alert("ลบข้อมูลเรียบร้อย");	
+										//showDataAssignKpi();
+										showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val(),$("#emp_assign_id_emb").val());
+										//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#position_id").val(),$("#employee_id").val());
+										showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
+									}
 								}
-							}
-					 });
+						 });
+					 }
 					 
 				 });
 				 //action del,edit end

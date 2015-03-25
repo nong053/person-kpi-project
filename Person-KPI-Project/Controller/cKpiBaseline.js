@@ -143,7 +143,23 @@ $(document).ready(function(){
  		
  	});
  	//back to kpi end
-	
+ 	//validate form start
+ 	var validateBaselineFn=function(){
+		var validate="";
+		if($("#baselineBegin").val()==""){
+	 		validate+="กรอก Baseline Begin ด้วยครับ \n";
+	 	}if($("#baselineEnd").val()==""){
+	 		validate+="กรอก Baseline End ด้วยครับ \n";
+	 	} 
+	 	if($("#baselinetargetScore").val()==""){
+	 		validate+="กรอก Target Score ด้วยครับ \n";
+	 	} 
+	 	
+	 	return validate;
+	}
+ 	//validate form end
+ 	
+ 	
 	$("form#baselineForm").submit(function(){
 		
 		/*
@@ -161,32 +177,36 @@ $(document).ready(function(){
 		
 		*/
 		//alert($("#paramKpiId").val());
-		
-		$.ajax({
-			url:"../Model/mKpiBaseLine.php",
-			type:"post",
-			dataType:"json",
-			data:{"baselineBegin":$("#baselineBegin").val(),"baselineEnd":$("#baselineEnd").val(),"baselinetargetScore":$("#baselinetargetScore").val(),
-				"action":$("#baselineAction").val(),"baselineId":$("#baselineId").val(),"paramKpiId":$("#paramKpiId").val(),"suggestion":$("#suggestion").val()
-				},
-			success:function(data){
-				if(data[0]=="success"){
-					alert("บันทึกข้อมูลเรียบร้อย");	
-					showDatabaseline($("#paramKpiId").val());
-					resetDatabaseline();	
-				}
-				if(data[0]=="editSuccess"){
-					alert("แก้ไขข้อมูลเรียบร้อย");	
-					showDatabaseline($("#paramKpiId").val());
-					resetDatabaseline();
-						
-				}
-				
-			}
+		if(validateBaselineFn()!=""){
+			alert(validateBaselineFn());
+			return false;
+		}else{
 			
-		});
-		return false;
+		
+			$.ajax({
+					url:"../Model/mKpiBaseLine.php",
+					type:"post",
+					dataType:"json",
+					data:{"baselineBegin":$("#baselineBegin").val(),"baselineEnd":$("#baselineEnd").val(),"baselinetargetScore":$("#baselinetargetScore").val(),
+						"action":$("#baselineAction").val(),"baselineId":$("#baselineId").val(),"paramKpiId":$("#paramKpiId").val(),"suggestion":$("#suggestion").val()
+						},
+					success:function(data){
+						if(data[0]=="success"){
+							alert("บันทึกข้อมูลเรียบร้อย");	
+							showDatabaseline($("#paramKpiId").val());
+							resetDatabaseline();	
+						}
+						if(data[0]=="editSuccess"){
+							alert("แก้ไขข้อมูลเรียบร้อย");	
+							showDatabaseline($("#paramKpiId").val());
+							resetDatabaseline();
+								
+						}
+						
+					}
+					
+				});
+				return false;
+		}
 	});
-	
-	
 });

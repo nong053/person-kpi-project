@@ -149,7 +149,7 @@ GROUP BY ak.assign_kpi_year,ak.kpi_id
 }
 if($_GET['action']=="tableKpiResult"){
 	$strSQL="
-select kpi.kpi_id as 'kpi_id' ,kpi.kpi_name as 'kpi_name',
+select kpi.kpi_code as 'kpi_id' ,kpi.kpi_name as 'kpi_name',
 sum(ak.target_data)/count(kr.emp_id) as 'kpi_target' ,sum(ak.kpi_actual_manual)/count(kr.emp_id) as 'kpi_actual',
 sum(ak.performance)/count(kr.emp_id)  as 'kpi_performance'
 from assign_kpi ak
@@ -158,6 +158,7 @@ ON ak.kpi_id=kpi.kpi_id
 INNER JOIN kpi_result kr on ak.assign_kpi_year=kr.kpi_year
 and ak.appraisal_period_id=kr.appraisal_period_id
 and ak.department_id=kr.department_id
+and ak.emp_id=kr.emp_id
 
 where ak.assign_kpi_year='$kpi_year'
 and ak.admin_id='$admin_id'

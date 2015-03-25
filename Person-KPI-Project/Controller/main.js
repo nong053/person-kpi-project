@@ -1073,4 +1073,39 @@ $(document).ready(function(){
      
      
      
+     //########################## Reset Data Start ##########################
+     var resetDataFn=function(vCoppyForm,vCoppyTo,vTable){
+    	 $.ajax({
+	 			url:"../Model/mResetData.php",
+	 			type:"post",
+	 			dataType:"json",
+	 			data:{"vCoppyForm":vCoppyForm,"vCoppyTo":vCoppyTo,"action":vTable},
+	 			async:false,
+	 			success:function(data){
+	 				if(data=="success"){
+	 					alert("Reset Table "+vTable+" is Successfully");
+	 				}else{
+	 					alert("Reset Table "+vTable+" is not Success");
+	 				}
+	 			}
+	 		});
+     }	
+  
+     $("#btnResetData").click(function(){
+    	 var vCoppyForm='198';//id admin source is copy
+    	 var vCoppyTo='197'; //id admindestination is copy
+    	 resetDataFn(vCoppyForm,vCoppyTo,"appraisal_period");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"assign_kpi");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"assign_kpi_master");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"department");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"employee");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"kpi");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"kpi_result");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"position_emp");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"threshold");
+    	 
+    	 
+    	 return false;
+ 		});
+     //########################## Reset Data End ############################
 });

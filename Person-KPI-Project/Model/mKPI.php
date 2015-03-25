@@ -29,8 +29,8 @@ if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 }
 //CheckUsingKpiAssignAndKpiResult End
 if($_POST['action']=="add"){
-	$strSQL="INSERT INTO kpi(kpi_name,kpi_detail,department_id,division_id,kpi_actual_manual,kpi_actual_query,kpi_type_actual,kpi_target,admin_id,kpi_code)
-	VALUES('$kpiName','$kpiDetail','$departmentId','$divisionId','$kpiActualManual','$kpiActualQuery','$kpiTypeActual','$kpiTarget','$admin_id','$kpiCode')";
+	$strSQL="INSERT INTO kpi(kpi_name,kpi_detail,admin_id,kpi_code)
+	VALUES('$kpiName','$kpiDetail','$admin_id','$kpiCode')";
 	$rs=mysql_query($strSQL);
 	if($rs){
 		echo'["success"]';
@@ -44,11 +44,7 @@ if($_POST['action']=="add"){
 if($_POST['action']=="showData"){
 	//echo "Show Data";
 	$strSQL="SELECT *FROM kpi  
-left JOIN department de
-on kpi.department_id=de.department_id
-left JOIN division di
-on kpi.division_id=di.division_id
-where kpi.admin_id='$admin_id'
+	where kpi.admin_id='$admin_id'
 			order by kpi_id ";
 	$result=mysql_query($strSQL);
 	$$tableHTML="";
@@ -56,7 +52,7 @@ where kpi.admin_id='$admin_id'
 	$tableHTML.="<table id='Tablekpi' class='grid table-striped'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col  />";
+			$tableHTML.="<col  style='width:40%'/>";
 			$tableHTML.="<col style='width:40%'/>";
 		
 			/*
@@ -96,7 +92,7 @@ where kpi.admin_id='$admin_id'
 	
 	$tableHTML.="<tbody class=\"contentkpi\">";
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td>".$i."|".$rs['kpi_code']."</td>";
+	$tableHTML.="	<td>".$rs['kpi_code']."</td>";
 	
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
 	$tableHTML.="	<td>".$rs['kpi_detail']."</td>";
@@ -145,7 +141,7 @@ if($_POST['action']=="edit"){
 		
 		//echo "[{\"abc\":$rs[kpi_id],\"def\":\"22\"}]";
 		
-		 echo "[{\"kpi_id\":\"$rs[kpi_id]\",\"kpi_name\":\"$rs[kpi_name]\",
+		 echo "[{\"kpi_id\":\"$rs[kpi_id]\",\"kpi_code\":\"$rs[kpi_code]\",\"kpi_name\":\"$rs[kpi_name]\",
 		 		\"kpi_detail\":\"$rs[kpi_detail]\",\"department_id\":\"$rs[department_id]\",\"division_id\":\"$rs[division_id]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",\"kpi_target\":\"$rs[kpi_target]\"}]";
 		 
 	}else{
@@ -158,8 +154,7 @@ if($_POST['action']=="editAction"){
 	
 
 
-	$strSQL="UPDATE kpi SET department_id='$departmentId',division_id='$divisionId',kpi_name='$kpiName',kpi_detail='$kpiDetail',
-	kpi_actual_query='$kpiActualQuery ',kpi_actual_manual='$kpiActualManual',kpi_type_actual='$kpiTypeActual',kpi_target='$kpiTarget',
+	$strSQL="UPDATE kpi SET kpi_name='$kpiName',kpi_detail='$kpiDetail',
 	kpi_code='$kpiCode'
 	WHERE kpi_id='$kpiId'";
 	$result=mysql_query($strSQL);

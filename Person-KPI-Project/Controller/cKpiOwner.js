@@ -709,12 +709,12 @@ var TableKpiResult = function(kpi_year,appraisal_period_id,department_id){
 			htmlGridKpiResult+="<table id=\"tableKpiResult\">";
 			htmlGridKpiResult+="<colgroup>";
 			
-					htmlGridKpiResult+="<col style=\"width:5%\" />";
-					htmlGridKpiResult+="<col style=\"width:40%\"/>";
+					htmlGridKpiResult+="<col style=\"width:7%\" />";
+					htmlGridKpiResult+="<col style=\"width:30%\"/>";
 					htmlGridKpiResult+="<col style=\"width:7%\"/>";
 					htmlGridKpiResult+="<col style=\"width:7%\"/>";
 					htmlGridKpiResult+="<col style=\"width:7%\"/>";
-					htmlGridKpiResult+="<col style=\"width:10%\"/>";
+					htmlGridKpiResult+="<col style=\"width:8%\"/>";
 					htmlGridKpiResult+="<col style=\"width:15%\"/>";
 					/*htmlGridKpiResult+="<col />";*/
 					
@@ -722,7 +722,7 @@ var TableKpiResult = function(kpi_year,appraisal_period_id,department_id){
 			htmlGridKpiResult+="</colgroup>";
 				htmlGridKpiResult+="<thead>";
 					htmlGridKpiResult+="<tr>";
-						htmlGridKpiResult+="<th data-field=\"Field1\"><b>Code</b></th>";
+						htmlGridKpiResult+="<th data-field=\"Field1\"><b></b></th>";
 						htmlGridKpiResult+="<th data-field=\"Field2\"><b>KPI Name</b></th>";
 						htmlGridKpiResult+="<th data-field=\"Field3\"><b>Target</b></th>";
 						htmlGridKpiResult+="<th data-field=\"Field4\"><b>Actual</b></th>";
