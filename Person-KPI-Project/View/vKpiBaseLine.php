@@ -100,15 +100,15 @@ $kpiName=$_GET['kpiName'];
 <table>
 	
 	<tr>
-		<td class='text-right'><b>Begin Baseline</b></td>
+		<td class='text-right'><b>Begin Baseline <font color="red">*</font></b></td>
 		<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control input-sm" style="width:100px;" ></td>
 	</tr>
 	<tr>
-		<td class='text-right'><b>End Baseline</b></td>
+		<td class='text-right'><b>End Baseline <font color="red">*</font></b></td>
 		<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control input-sm" style="width:100px;"></td>
 	</tr>
 	<tr>
-		<td class='text-right'><b>Target Score</b></td>
+		<td class='text-right'><b>Score <font color="red">*</font></b></td>
 		<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control input-sm" style="width:100px;"></td>
 	</tr>
 	<tr>
@@ -122,6 +122,7 @@ $kpiName=$_GET['kpiName'];
 		<td>
 		</td>
 		<td>
+			(<font color="red">*</font>)จำเป็นต้องกรอก<br>
 			<input type="hidden" name="baselineAction" id ="baselineAction" class="baselineAction" value="add">
 			<input type="hidden" name="baselineId" id ="baselineId"  class="baselineId" value="">
 			<input type="submit" id="baselineSubmit" name="baselineSubmit" class="btn btn-primary btn-sm" value="Add">

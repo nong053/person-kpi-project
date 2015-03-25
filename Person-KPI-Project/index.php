@@ -9,7 +9,7 @@ $admin_username = "";
 include_once 'config.inc.php';
 
 //for demo delete start;
-$_GET['userName']="demo_admin";
+//$_GET['userName']="demo_admin";
 //for demo delete end;
 
 if(!$_GET['userName']){

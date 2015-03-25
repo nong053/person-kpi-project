@@ -48,7 +48,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<th><b> ID</b></th>";
 			$tableHTML.="<th><b> Begin</b></th>";
 			$tableHTML.="<th><b> End</b></th>";
-			$tableHTML.="<th><b>Target</b></th>";
+			$tableHTML.="<th><b>Score</b></th>";
 			$tableHTML.="<th><b> Suggestion</b></th>";
 			$tableHTML.="<th><b>Manage</b></th>";
 			

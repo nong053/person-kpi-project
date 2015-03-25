@@ -50,8 +50,8 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="<col />";
 	$tableHTML.="<col />";
 	$tableHTML.="<col style='width:8%'/>";
-	$tableHTML.="<col style='width:9%'/>";
-	$tableHTML.="<col style='width:8%'/>";
+	$tableHTML.="<col style='width:5%'/>";
+	$tableHTML.="<col style='width:5%'/>";
 	$tableHTML.="<col style='width:5%'/>";
 	$tableHTML.="<col style='width:5%'/>";
 	/*$tableHTML.="<col />";*/
@@ -65,10 +65,10 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="<th><b>Department</b></th>";
 	$tableHTML.="<th><b>Position</b></th>";
 	$tableHTML.="<th><b>Role</b></th>";
-	$tableHTML.="<th><b>Age working</b></th>";
+	$tableHTML.="<th><b>Age W</b></th>";
 	$tableHTML.="<th><b>Age</b></th>";
 	$tableHTML.="<th><b>Tel</b></th>";
-	$tableHTML.="<th><b>Score</b></th>";
+	$tableHTML.="<th><b>Perf %</b></th>";
 	$tableHTML.="<th><b>Manage</b></th>";
 		
 	$tableHTML.="</tr>";
@@ -93,7 +93,7 @@ if($_POST['action']=="showEmpData"){
 		$tableHTML.="	<td>".$rs['emp_age_working']."</td>";
 		$tableHTML.="	<td>".$rs['emp_age']."</td>";
 		$tableHTML.="	<td>".$rs['emp_tel']."</td>";
-		$tableHTML.="	<td>".$score_percentage."</td>";
+		$tableHTML.="	<td>".number_format((float)$score_percentage, 2, '.', '')."%</td>";
 /*
 appraisal_period_id	1
 department_id	1

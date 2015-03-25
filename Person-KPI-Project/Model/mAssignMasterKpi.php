@@ -41,6 +41,7 @@ if($_POST['action']=="add"){
 	(department_id='$department_id' or '$department_id'='All') and
 	(position_id='$position_id' or '$position_id'='All') and
 	(kpi_id='$kpi_id' or '$kpi_id'='All')
+	and admin_id='$admin_id'
 	";
 	
 	$rsCount=mysql_query($strSQLCount);
@@ -115,7 +116,7 @@ if($_POST['action']=="showData"){
 
 	select ak.appraisal_period_id,ak.assign_kpi_id,kpi_name,ak.kpi_weight,ak.target_data,ak.target_score,ak.kpi_type_actual,ak.kpi_actual_manual,ak.kpi_actual_query
 	from assign_kpi_master ak
-	inner JOIN kpi
+	left JOIN kpi
 	on ak.kpi_id=kpi.kpi_id
 	where (ak.assign_kpi_year='$year' or '$year'='All')
     and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
@@ -132,7 +133,7 @@ if($_POST['action']=="showData"){
 	$tableHTML.="<table id='TableassignKpi' class='grid table-striped'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col  style='width:50%'/>";
+			$tableHTML.="<col  style='width:45%'/>";
 			$tableHTML.="<col />";
 			$tableHTML.="<col />";
 		
@@ -162,10 +163,10 @@ if($_POST['action']=="showData"){
 	$tableHTML.="<tr>";
 	$tableHTML.="	<td>".$i."</td>";
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
-	$tableHTML.="	<td>".$rs['kpi_weight']."</td>";
-	$tableHTML.="	<td>".$rs['target_data']."</td>";
-	$tableHTML.="	<td>".$kpi_actual."</td>";
-	$tableHTML.="	<td>".$rs['target_score']."</td>";
+	$tableHTML.="	<td>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</td>";
+	$tableHTML.="	<td>".number_format((float)$rs['target_data'], 2, '.', '')."</td>";
+	$tableHTML.="	<td>".number_format((float)$kpi_actual, 2, '.', '')."</td>";
+	$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
 	
 	$tableHTML.="	<td>
 			<button type='button' id='idEdit-".$rs['assign_kpi_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
@@ -184,7 +185,7 @@ if($_POST['action']=="showData"){
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
-	$strSQL="DELETE FROM assign_kpi_master WHERE assign_kpi_id=$id";
+	$strSQL="DELETE FROM assign_kpi_master WHERE assign_kpi_id=$id and admin_id='$admin_id'";
 	$result=mysql_query($strSQL);
 	if($result){
 		echo'["success"]';
@@ -194,8 +195,10 @@ if($_POST['action']=="del"){
 				where (assign_kpi_year='$year' or '$year'='All')
 				and (appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 				and (department_id='$department_id' or '$department_id'='All')
-				and (position_id='$position_id' or '$position_id'='All')";
-		
+				and (position_id='$position_id' or '$position_id'='All')
+				and admin_id='$admin_id'
+			";
+				
 		$rsResultUpdate=mysql_query($strSQLUpdate);
 		if(!$rsResultUpdate){
 			echo mysql_error();
@@ -246,7 +249,7 @@ if($_POST['action']=="removeAssignKPIs"){
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
-	$strSQL="SELECT * FROM assign_kpi_master WHERE assign_kpi_id=$id";
+	$strSQL="SELECT * FROM assign_kpi_master WHERE assign_kpi_id=$id and admin_id='$admin_id'";
 	$result=mysql_query($strSQL);
 	if($result){
 		$rs=mysql_fetch_array($result);
@@ -315,7 +318,10 @@ if($_POST['action']=="editAction"){
 				where (assign_kpi_year='$year' or '$year'='All')
 				and (appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 				and (department_id='$department_id' or '$department_id'='All')
-				and (position_id='$position_id' or '$position_id'='All')";
+				and (position_id='$position_id' or '$position_id'='All')
+				and admin_id='$admin_id'
+		";
+		
 		
 		$rsResultUpdate=mysql_query($strSQLUpdate);
 		if(!$rsResultUpdate){
@@ -398,6 +404,7 @@ if($_POST['action']=="getSumWeightKpi"){
 		(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
 		(department_id='$department_id' or '$department_id'='All') and
 		(position_id='$position_id' or '$position_id'='All') 
+		and admin_id='$admin_id'
 		group by assign_kpi_year,appraisal_period_id,position_id
 		";
 	$result=mysql_query($strSQL);
@@ -412,6 +419,7 @@ if($_POST['action']=="getKPIPercentage"){
 	(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
 	(department_id='$department_id' or '$department_id'='All') and
 	(position_id='$position_id' or '$position_id'='All') 
+	and admin_id='$admin_id'
 	group by assign_kpi_year,appraisal_period_id,position_id
 	";
 	$result=mysql_query($strSQL);
@@ -426,6 +434,7 @@ if($_POST['action']=="getKPIPercentage"){
 						and (appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 						and (department_id='$department_id' or '$department_id'='All')
 						and (position_id='$position_id' or '$position_id'='All')
+						and admin_id='$admin_id'
 						
 		";
 		$resultKpiResult=mysql_query($strSQLKpiResult);
@@ -460,7 +469,9 @@ if($_POST['action']=="confrimKpi"){
 		where (assign_kpi_year='$year' or '$year'='All') 
 			and (appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 			and (department_id='$department_id' or '$department_id'='All')
-			and (position_id='$position_id' or '$position_id'='All')";
+			and (position_id='$position_id' or '$position_id'='All')
+			and admin_id='$admin_id'
+			";
 	
 			$rsResultUpdate=mysql_query($strSQLUpdate);
 			if(!$rsResultUpdate){

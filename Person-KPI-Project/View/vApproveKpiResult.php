@@ -118,7 +118,7 @@
 		<table class="formAdjust" style="display:none;" >
 		<tr>
 			<td class='text-right'>
-				<b>Score</b>
+				<b>Perfomance%</b>
 			</td>
 			<td>
 				<input type="text" id="adjust_percentage" name="adjust_percentage"   class="form-control input-sm" >

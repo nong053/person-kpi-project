@@ -108,7 +108,7 @@ $(document).ready(function(){
 		$("#kpi_id").change();
 		
 		
-		$("#kpi_weight").val("");
+		$("#kpi_weight").val("25.00");
 		//$("#kpi_target_data").val("");
 		//$("#target_score").val("");
 		$("#kpi_actual_score").val("0.00");
@@ -317,23 +317,27 @@ $(document).ready(function(){
 					 //alert("hello");
 					 //alert(this.id);
 					 
-					 var idDel=this.id.split("-");
-					 var id=idDel[1];
-					 $.ajax({
-							url:"../Model/mAssignMasterKpi.php",
-							type:"post",
-							dataType:"json",
-							data:{"id":id,"action":"del","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
-								"position_id":position_id},
-							success:function(data){
-								if(data[0]=="success"){
-									alert("ลบข้อมูลเรียบร้อย");	
-									//showDataAssignKpi();
-									showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
-									
+					 
+					 if(confirm("Do you want to delete this KPI?")){
+						 var idDel=this.id.split("-");
+						 var id=idDel[1];
+						 $.ajax({
+								url:"../Model/mAssignMasterKpi.php",
+								type:"post",
+								dataType:"json",
+								data:{"id":id,"action":"del","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
+									"position_id":position_id},
+								success:function(data){
+									if(data[0]=="success"){
+										//alert("ลบข้อมูลเรียบร้อย");	
+										//showDataAssignKpi();
+										showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
+										
+									}
 								}
-							}
-					 });
+						 });
+					 }
+					 
 					 
 				 });
 				 //action del,edit end

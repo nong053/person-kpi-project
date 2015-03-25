@@ -90,7 +90,7 @@
 	
 	
 	<tr>
-		<td class="text-right"><b>Position <font color="red">*</font></b></td>
+		<td class="text-right"><b>Position Name<font color="red">*</font></b></td>
 		<td>
 			<input type="text" id="positionName" name="positionName" class="form-control input-sm">
 		</td>

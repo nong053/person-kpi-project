@@ -185,6 +185,7 @@ $(document).ready(function(){
 					 alert(empDepId);
 					 alert(empPositionId);
 					 */
+					 if(confirm("Do You Want to Confirm Approve KPI?")){
 					     $.ajax({
 								url:"../Model/mApproveKpi.php",
 								type:"post",
@@ -206,6 +207,7 @@ $(document).ready(function(){
 								}
 								
 							});
+					 }
 					     
 					//alert(emp_id);
 				});

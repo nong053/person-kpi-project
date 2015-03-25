@@ -37,7 +37,7 @@
  
 <div role="alert" class="alert alert-info">
      <h2> <strong>Assign KPI</strong></h2>
-   		เพื่อทำการมอบหมาย KPI ที่ต้องวัดผลการปฏิบัติงานให้กับพนักงาน
+   		เพื่อทำการมอบหมาย KPI ที่ต้องวัดผลการปฏิบัติงานให้กับพนักงาน ตรงนี้จะเป็นการ Assign KPI ค่าเริ่มต้นโดย Assign KPI เข้าไปในระดับตำแหน่ง ซึ่งก็คือพนักงานที่อยู่ภายใต้ตำแหน่งนั้นๆจะถูก Assign KPI เป็นค่าเริ่มต้นทันที
     </div>
 
 
@@ -179,16 +179,16 @@
 			<table>
 		
 		<tr>
-			<td class='text-right'><b>KPIs Name</b></td>
+			<td class='text-right'><b>KPI Name</b></td>
 			<td id="kpiDropDrowListArea">
 				
 			</td>
 		</tr>
 		
 		<tr>
-			<td class='text-right'><b>KPIs Weight</td>
+			<td class='text-right'><b>KPI Weight</td>
 			<td >
-				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control input-sm"  style="width:150px;">
+				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control input-sm" value="25.00"  style="width:150px;" >
 			</td>
 		</tr>
 		<tr>
@@ -271,7 +271,7 @@
 		<div class='col-md-3'>
 			<!-- <p class="bg-warning1"><B>Baseline</B></p> -->
 			
-				<div style="margin-top: 5px;" class="panel panel-default panel-bottom">
+				<div style="margin-top: 30px;" class="panel panel-default panel-bottom">
 				  <div class="panel-heading">
 					<b>Baseline List</b>			
 				  </div>
