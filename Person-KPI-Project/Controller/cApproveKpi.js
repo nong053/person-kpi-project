@@ -164,7 +164,7 @@ $(document).ready(function(){
 									$(".formAdjust").show();
 									$("#adjust_reason").val(data[0]['adjust_reason']);
 									$("#adjust_percentage").val(data[0]['adjust_percentage']);
-									
+									showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
 								}
 								
 							});
@@ -200,7 +200,7 @@ $(document).ready(function(){
 									//alert(data);
 									
 									if(data[0]=="approveSuccess"){
-										alert("Approve KPI Successfully");
+										//alert("Approve KPI Successfully");
 										showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
 									}
 									

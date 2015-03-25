@@ -231,13 +231,13 @@ year	2012
 				</td>";
 			}else{
 			$tableHTML.="	<td>
-			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning btn-xs'>Assigned </button>
+			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning btn-xs'>KPI Resulted</button>
 			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger btn-xs'>Remove</button>
 			</td>";
 			}
 		}else{
 			$tableHTML.="<td>
-			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger btn-xs'>Assign KPI</button>
+			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger btn-xs'>KPI Result</button>
 			</td>";
 		}
 		$tableHTML.="</tr>";
@@ -428,7 +428,7 @@ $division_id=$_POST['division_id'];
 
 	select ak.appraisal_period_id,ak.assign_kpi_id,kpi_name,ak.kpi_weight,ak.target_data,ak.target_score,ak.kpi_type_actual,ak.kpi_actual_manual,ak.kpi_actual_query
 	from assign_kpi ak
-	inner JOIN kpi
+	left JOIN kpi
 	on ak.kpi_id=kpi.kpi_id
 	where (ak.emp_id='$employee_id' or '$employee_id'='All')
 	and (ak.assign_kpi_year='$year' or '$year'='All')

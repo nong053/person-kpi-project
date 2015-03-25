@@ -109,7 +109,6 @@ year	2012
 				where (kr.kpi_year='$year' or '$year'='All')
 				and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 				and (kr.department_id='$department_id' or '$department_id'='All')
-				
 				and (kr.position_id='$position_id' or '$position_id'='All')
 				and (kr.emp_id='".$rs['emp_id']."' or '".$rs['emp_id']."'='All')
 				and kr.confirm_flag='Y'
@@ -121,7 +120,7 @@ year	2012
 		if($rsKpiResult[approve_flag]=="Y"){
 		$tableHTML.="	<td>
 			<button type='button' id='idApproveKPI-".$rs['emp_id']."' class='actionApproveKPI btn btn-success btn-xs'>Approved </button>
-			
+			<button type='button' id='idApproveEditKPI-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary btn-xs'>Edit</button>
 			</td>";
 		}else{
 			$tableHTML.="<td>
@@ -154,8 +153,23 @@ and emp_id='$employee_id'
 	if($result){
 		$rs=mysql_fetch_array($result);
 		
-		
-		 echo "[{\"adjust_percentage\":\"$rs[adjust_percentage]\",\"adjust_reason\":\"$rs[adjust_reason]\"}]";
+		$strSQLEditApprove="
+		  	UPDATE kpi_result
+			 SET approve_flag='N'
+			 where kpi_year='$year' 
+			 and appraisal_period_id='$appraisal_period_id' 
+			 and emp_id='$employee_id' 
+			 and confirm_flag='Y'
+			";
+		$resultEditApprove=mysql_query($strSQLEditApprove);
+		if($resultEditApprove){
+			echo "[{\"adjust_percentage\":\"$rs[adjust_percentage]\",\"adjust_reason\":\"$rs[adjust_reason]\"}]";
+		}else{
+			echo'["error update approve N"]';
+		}
+		 
+		 
+		 
 		
 	}else{
 		echo'["error"]';
