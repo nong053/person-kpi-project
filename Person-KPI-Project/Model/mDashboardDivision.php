@@ -105,14 +105,14 @@ and kr.admin_id=ak.admin_id
 and kr.department_id=ak.department_id
 and kr.position_id=ak.position_id
 
-
 		where kr.kpi_year='$kpi_year'
 		and kr.admin_id='$admin_id'
 		and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 		and kr.emp_id='$emp_id'
 		and ak.kpi_id='$kpi_id'
+		and (kr.department_id='$department_id' or '$department_id'='All')
 		and kr.approve_flag='Y'
-		GROUP BY kr.kpi_year,ak.appraisal_period_id
+		GROUP BY kr.kpi_year,kr.appraisal_period_id,kr.emp_id,kr.department_id,ak.kpi_id
 )queryA
 		
 		
@@ -134,7 +134,8 @@ and kr.position_id=ak.position_id
 		and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 		and ak.kpi_id='$kpi_id'
 		and kr.approve_flag='Y'
-		GROUP BY kr.kpi_year,ak.appraisal_period_id
+		and (kr.department_id='$department_id' or '$department_id'='All')
+		GROUP BY kr.kpi_year,kr.appraisal_period_id,kr.department_id,ak.kpi_id
 )queryA
 		
 		";

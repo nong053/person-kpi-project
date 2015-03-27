@@ -674,9 +674,10 @@ var TableKpiResult = function(kpi_year,appraisal_period_id,department_id){
 					type:"get",
 					dataType:"json",
 					async:false,
-					data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"kpi_id":EntryIndex[0],"action":"score_spraph"},
+					data:{"kpi_year":kpi_year,"department_id":department_id,"appraisal_period_id":appraisal_period_id,"kpi_id":EntryIndex[0],"action":"score_spraph"},
 					success:function(data){
 						var score_spraph=data[0][0];
+						
 						//alert(""+score_spraph+"");
 						//return "0,80,80";
 							if(index==0){
@@ -685,8 +686,8 @@ var TableKpiResult = function(kpi_year,appraisal_period_id,department_id){
 								textJson+=",{";
 							}
 				/*kpi_id,kpi_name,kpi_target,kpi_actual,kpi_performance*/
-				
-					textJson+="\"Field1\":\"<div class='textR'>"+EntryIndex[0]+"</div>\",";
+					/*textJson+="\"Field1\":\"<div class='textR'>"+EntryIndex[0]+"</div>\",";*/
+					textJson+="\"Field1\":\"<div class='textR'>"+EntryIndex[5]+"</div>\",";
 					textJson+="\"Field2\":\"<div class=''>"+EntryIndex[1]+"</div>\",";
 					textJson+="\"Field3\":\"<div class='textR'>"+parseFloat(EntryIndex[2]).toFixed(0)+"</div>\",";
 					textJson+="\"Field4\":\"<div class='textR'>"+parseFloat(EntryIndex[3]).toFixed(0)+"</div>\",";

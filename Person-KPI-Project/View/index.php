@@ -3,8 +3,9 @@
 <?php 
 
 if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
-	header( "location: ../login.php?admin_name=".$_SESSION['admin_name']."" );
+	//header( "location: ../login.php?admin_name=".$_SESSION['admin_name']."" );
 	//header( "location: ../login.php?admin_name=Demo.V1" );
+	header( "location: ../login.php");
 	
 	echo "redirect";
 	exit(0);	
