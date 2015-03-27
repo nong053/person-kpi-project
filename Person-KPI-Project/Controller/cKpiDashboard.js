@@ -248,23 +248,25 @@ function detailInit(e) {
 							intervalColorsArray=intervalColorsArray.split(",");
 							
 							var intervalColors="'"+intervalColorsArray[0]+"','"+intervalColorsArray[1]+"','"+intervalColorsArray[2]+"'";
+							
 							var $ranges=" [";
 								$ranges+=" {";
 										$ranges+="from: "+intervalsStart[0]+",";
 										$ranges+="to: "+intervalsEnd[0]+",";
-										$ranges+="color: \""+intervalColorsArray[0]+"\"";
+										$ranges+="color: \"#"+intervalColorsArray[0]+"\"";
 									$ranges+=" }, {";
 										$ranges+="from: "+intervalsStart[1]+",";
 										$ranges+="to: "+intervalsEnd[1]+",";
-										$ranges+=" color: \""+intervalColorsArray[1]+"\"";
+										$ranges+=" color: \"#"+intervalColorsArray[1]+"\"";
 									$ranges+="}, {";
 										$ranges+=" from: "+intervalsStart[2]+",";
 										$ranges+="to: "+intervalsEnd[2]+",";
-										$ranges+="color: \""+intervalColorsArray[2]+"\"";
+										$ranges+="color: \"#"+intervalColorsArray[2]+"\"";
 										$ranges+= " }";
 									$ranges+= "]";
 									
 								}
+							//alert($ranges);
 									var objRanges=eval("("+$ranges+")");
 							
 							//Gauge for check data value end
@@ -288,7 +290,7 @@ function detailInit(e) {
 					          });
 							 
 							 $("#gauge-value-"+e.data.fieldId).html("<b>"+e.data.field1+""+parseFloat(data[0][0]).toFixed(2)+"% </b>");
-							
+							$(".gaugePersonal > svg").css({"top":"6px"});
 						}
 					});
 					// ################ Genarate Perfomance Guage End  ################# //

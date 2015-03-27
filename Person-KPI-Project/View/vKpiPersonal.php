@@ -17,6 +17,10 @@ padding: 2px;
 	margin: 0 auto;
 	margin-top:5px;
 }
+.gaugePersonal > svg {
+  padding-top: -3px;
+}
+
 /*
 #gaugePersonal {
 	width: 300px;

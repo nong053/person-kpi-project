@@ -144,6 +144,7 @@ $(document).ready(function(){
 					if(data[0]=="success"){
 						alert("บันทึกข้อมูลเรียบร้อย");	
 						showDataThershold();
+						resetDataThershold();
 							
 					}
 					if(data[0]=="editSuccess"){

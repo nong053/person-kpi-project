@@ -75,7 +75,7 @@ if($_GET['action']=="scoreDepartmentOwner"){
 	where kpi_year='$kpi_year'
 	and kr.admin_id='$admin_id'
 	and kr.approve_flag='Y'
-	and (kr.appraisal_period_id='$appraisal_period_id') or ('$appraisal_period_id'='All')
+	and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 	GROUP BY kr.department_id
 	
 	";
@@ -149,7 +149,7 @@ GROUP BY ak.assign_kpi_year,ak.kpi_id
 }
 if($_GET['action']=="tableKpiResult"){
 	$strSQL="
-select kpi.kpi_code as 'kpi_id' ,kpi.kpi_name as 'kpi_name',
+select kpi.kpi_code as 'kpi_code', kpi.kpi_id as 'kpi_id' ,kpi.kpi_name as 'kpi_name',
 sum(ak.target_data)/count(kr.emp_id) as 'kpi_target' ,sum(ak.kpi_actual_manual)/count(kr.emp_id) as 'kpi_actual',
 sum(ak.performance)/count(kr.emp_id)  as 'kpi_performance'
 from assign_kpi ak
@@ -168,7 +168,7 @@ and kr.approve_flag='Y'
 GROUP BY ak.assign_kpi_year,ak.kpi_id
 ";
 	/*kpi_id,kpi_name,kpi_target,kpi_actual,kpi_performance*/
-	$columnName="kpi_id,kpi_name,kpi_target,kpi_actual,kpi_performance";
+	$columnName="kpi_id,kpi_name,kpi_target,kpi_actual,kpi_performance,kpi_code";
 	genarateJson($strSQL,$columnName,$conn);
 }
 

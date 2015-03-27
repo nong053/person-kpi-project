@@ -1085,7 +1085,7 @@ $(document).ready(function(){
 	 				if(data=="success"){
 	 					alert("Reset Table "+vTable+" is Successfully");
 	 				}else{
-	 					alert("Reset Table "+vTable+" is not Success");
+	 					alert("Reset Table "+vTable+" is Fail");
 	 				}
 	 			}
 	 		});
@@ -1094,15 +1094,18 @@ $(document).ready(function(){
      $("#btnResetData").click(function(){
     	 var vCoppyForm='198';//id admin source is copy
     	 var vCoppyTo='197'; //id admindestination is copy
+    	 resetDataFn(vCoppyForm,vCoppyTo,"threshold");
     	 resetDataFn(vCoppyForm,vCoppyTo,"appraisal_period");
-    	 resetDataFn(vCoppyForm,vCoppyTo,"assign_kpi");
-    	 resetDataFn(vCoppyForm,vCoppyTo,"assign_kpi_master");
     	 resetDataFn(vCoppyForm,vCoppyTo,"department");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"position_emp");
     	 resetDataFn(vCoppyForm,vCoppyTo,"employee");
     	 resetDataFn(vCoppyForm,vCoppyTo,"kpi");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"assign_kpi_master");
+    	 resetDataFn(vCoppyForm,vCoppyTo,"assign_kpi");
+
     	 resetDataFn(vCoppyForm,vCoppyTo,"kpi_result");
-    	 resetDataFn(vCoppyForm,vCoppyTo,"position_emp");
-    	 resetDataFn(vCoppyForm,vCoppyTo,"threshold");
+    	 
+    	 
     	 
     	 
     	 return false;
